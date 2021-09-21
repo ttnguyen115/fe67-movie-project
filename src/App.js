@@ -1,6 +1,13 @@
+import { Route, Switch } from "react-router";
+import Detail from './pages/Detail';
+import Home from './pages/Home';
+
 const App = () => {
   return (
-    <h1>Hello World</h1>
+    <Switch>
+      <Route path="/home" component={Home} />
+      <Route path="/" component={Detail} />
+    </Switch>
   );
 }
 
