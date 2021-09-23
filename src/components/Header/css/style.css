@@ -1,0 +1,35 @@
+.header {
+  background-color: #131720 !important;
+}
+
+.header__wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100px;
+  max-width: 1330px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.header__logo {
+  font-size: 28px;
+}
+
+.header__logo--link {
+  color: #fff;
+  text-decoration: none;
+}
+
+.header__logo--link span {
+  font-size: 12px;
+  color: #2f80ed;
+  margin-left: 5px;
+}
+/*# sourceMappingURL=style.css.map */

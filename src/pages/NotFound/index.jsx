@@ -27,7 +27,7 @@ const NotFound = () => {
                         className="notFound__card--button"
                         variant="contained"
                     >
-                        <Link to="/movie" className="btn--link">Go to Home page</Link>
+                        <Link to="/" className="btn--link">Go to Home page</Link>
                     </Button>
                 </CardActions>
             </Card>
