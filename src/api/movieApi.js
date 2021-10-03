@@ -12,15 +12,6 @@ export const movieApi = {
     },
 
     getById: id => {
-        const url = '/QuanLyPhim/LayThongTinPhim';
-        return axiosClient.get(url, {
-            params: {
-                maPhim: id
-            }
-        });
-    },
-
-    getRoomTicket: id => {
         const url = '/QuanLyRap/LayThongTinLichChieuPhim';
         return axiosClient.get(url, {
             params: {

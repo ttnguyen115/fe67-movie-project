@@ -1,8 +1,9 @@
-import { Button, Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import moment from "moment";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import TheaterList from "../../components/TheaterList";
 import VideoTrailer from "../../components/VideoTrailer";
 import { getMovieById } from "../../store/actions/movieAction";
 import { PlayIcon } from "./../../assets/detailIcon";
@@ -69,14 +70,9 @@ const Detail = () => {
                     </Grid>
                 </div>
 
-                <Link
-                    to={`/ticketroom/${selectedMovie?.maPhim}`}
-                    className="order__btn"
-                >
-                    <Button type="button">
-                        Order
-                    </Button>
-                </Link>
+                <Box sx={{ borderBottom: 1, borderColor: "divider", marginTop: 2 }}>
+                    <TheaterList />
+                </Box>
             </div>
         </div>
     );

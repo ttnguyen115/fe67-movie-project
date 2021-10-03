@@ -2,5 +2,4 @@ export const movieTypes = {
     GET_MOVIE_REQUEST: 'GET_MOVIE_REQUEST',
     GET_MOVIE_SUCCESS: 'GET_MOVIE_SUCCESS',
     GET_MOVIE_FAIL: 'GET_MOVIE_FAIL',
-
 }
