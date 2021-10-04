@@ -46,12 +46,12 @@ const TheaterList = () => {
                         />
                     ))
                 }
-                <ShowtimePicker
-                    dateValue={dateValue}
-                    handleChangeDateValue={handleChangeDateValue}
-                    className="date__picker"
-                />
             </Tabs>
+
+            <ShowtimePicker
+                dateValue={dateValue}
+                handleChangeDateValue={handleChangeDateValue}
+            />
 
             <TheaterItem
                 value={value}

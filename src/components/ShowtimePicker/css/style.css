@@ -1,11 +1,20 @@
-.date__picker {
-  -webkit-box-orient: inherit;
-  -webkit-box-direction: inherit;
-      -ms-flex-direction: inherit;
-          flex-direction: inherit;
+.datePicker {
+  margin-bottom: 20px !important;
 }
 
-.date__picker input {
+.datePicker .MuiInput-root {
+  color: #fff;
+}
+
+.datePicker .MuiInput-root::before {
+  border-color: #fff;
+}
+
+.datePicker .MuiInput-root::before:hover {
+  border-color: #fff;
+}
+
+.datePicker .MuiInput-root .MuiIconButton-root {
   color: #fff;
 }
 /*# sourceMappingURL=style.css.map */

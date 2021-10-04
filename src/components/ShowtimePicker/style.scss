@@ -1,8 +1,19 @@
-.date__picker {
-    flex-direction: inherit;
+.datePicker {
+    margin-bottom: 20px !important;
     
-    input {
+    .MuiInput-root {
         color: #fff;
-        
+
+        &::before {
+            border-color: #fff;
+
+            &:hover {
+                border-color: #fff;
+            }
+        }
+
+        .MuiIconButton-root {
+            color: #fff;
+        }
     }
 }

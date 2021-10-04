@@ -1,7 +1,9 @@
 import { Grid, Typography } from "@material-ui/core";
+import { Divider } from "@mui/material";
 import moment from "moment";
 import React from "react";
 import TheaterShowtime from "../TheaterShowtime";
+import "./css/style.css";
 
 const TheaterItem = ({ value, theaterSystem, index, dateValue }) => {
     const filterShowTime = (showtimeList) => {
@@ -23,29 +25,36 @@ const TheaterItem = ({ value, theaterSystem, index, dateValue }) => {
             id={index}
         >
             {theaterSystem?.map((theater) => (
-                <div key={theater.maCumRap}>
-                    {
-                        Boolean(filterShowTime(theater.lichChieuPhim))
-                            ? (
-                                <>
-                                    <Typography>{theater.tenCumRap}</Typography>
-                                    <Grid container>
-                                        <Grid item xs={3}>
-                                            <img src={theater.hinhAnh} alt="" />
-                                        </Grid>
-                                        <Grid item xs={9}>
-                                            <TheaterShowtime
-                                                showTime={filterShowTime(
-                                                    theater.lichChieuPhim
-                                                )}
-                                                key={index}
-                                            />
-                                        </Grid>
-                                    </Grid>
-                                </>
-                            )
-                            : null
-                    }
+                <div key={theater.maCumRap} className="theater__item">
+                    {Boolean(filterShowTime(theater.lichChieuPhim)) ? (
+                        <>
+                            <Typography className="theater__item--title">
+                                {theater.tenCumRap}
+                            </Typography>
+                            <Grid container>
+                                <Grid
+                                    item
+                                    xs={12}
+                                    sm={3}
+                                    className="theater__item--info"
+                                >
+                                    <img
+                                        src={theater.hinhAnh}
+                                        alt="theater-img"
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={9}>
+                                    <TheaterShowtime
+                                        showTime={filterShowTime(
+                                            theater.lichChieuPhim
+                                        )}
+                                        key={index}
+                                    />
+                                </Grid>
+                            </Grid>
+                            <Divider className="theater__item--divider" />
+                        </>
+                    ) : null}
                 </div>
             ))}
         </div>
