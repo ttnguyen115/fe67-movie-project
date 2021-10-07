@@ -1,0 +1,32 @@
+.menu-home-items {
+  .list-movie {
+    padding-left: 24px;
+    .list-movie-item {
+      max-width: 100%;
+      max-height: 150px;
+      padding-bottom: 20px;
+      display: flex;
+      img {
+        padding-right: 10px;
+        width: 100px;
+      }
+      .list-movie-name {
+        padding-right: 10px;
+        font-weight: 600;
+        font-size: 20px;
+      }
+      .address {
+        font-size: 16px;
+      }
+      .show-times {
+        font-size: 18px;
+        color: blue;
+        font-weight: 400;
+        cursor: pointer;
+        &:hover {
+          color: #1963dc8a;
+        }
+      }
+    }
+  }
+}

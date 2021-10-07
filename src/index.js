@@ -1,3 +1,4 @@
+
 import { LocalizationProvider } from '@mui/lab';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -7,6 +8,7 @@ import App from './App';
 import './index.css';
 import { store } from './store';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import "antd/dist/antd.css";
 
 ReactDOM.render(
   <Provider store={store}>
@@ -16,5 +18,5 @@ ReactDOM.render(
       </LocalizationProvider>
     </BrowserRouter>
   </Provider>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
