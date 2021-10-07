@@ -1,0 +1,25 @@
+.buttonPlay {
+  position: absolute;
+  left: 48%;
+  bottom: 40%;
+  color: black;
+  background-color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: transparent;
+  opacity: 0;
+  transition: all 0.3s linear;
+  &:hover {
+    border: 1px solid white;
+    opacity: 1;
+    color: white;
+  }
+
+  .btn-play {
+    width: 50px;
+    font-size: 25px;
+    align-items: center;
+    justify-content: center;
+  }
+}
