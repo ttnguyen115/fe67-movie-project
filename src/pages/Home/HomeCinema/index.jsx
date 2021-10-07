@@ -3,8 +3,6 @@ import { Tabs } from "antd";
 import "./index.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchCinemaTimes } from "../../../store/actions/cinema";
-import { Tab } from "@material-ui/icons";
-import { Grid, Container } from "@material-ui/core";
 
 const { TabPane } = Tabs;
 
