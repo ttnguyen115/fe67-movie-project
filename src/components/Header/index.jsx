@@ -129,13 +129,14 @@ const Header = () => {
                 </Typography>
 
                 <div className="header__search">
-                    <div className="header__search--icon">
-                        <SearchIcon />
-                    </div>
                     <InputBase
                         placeholder="Search…"
                         inputProps={{ "aria-label": "search" }}
+                        className="header__search--input"
                     />
+                    <div className="header__search--icon">
+                        <SearchIcon />
+                    </div>
                 </div>
 
                 <Button>Login</Button>

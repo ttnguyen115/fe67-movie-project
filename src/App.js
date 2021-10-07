@@ -1,31 +1,46 @@
+import { useEffect } from "react";
 import { Route, Switch } from "react-router";
-<<<<<<< HEAD
-import Detail from "./pages/Detail";
-import Home from "./pages/Home";
-import SignIn from "./pages/Signin";
-import SignUp from "./pages/Signup";
-=======
-import Header from "./components/Header";
+
+import { movieApi } from "./api/movieApi";
 import Detail from './pages/Detail';
 import Home from './pages/Home';
 import NotFound from "./pages/NotFound";
->>>>>>> fb7773900aaece51b9676ee4868ff4afbeb837b7
+import TicketRoom from "./pages/TicketRoom";
+
+import SignIn from "./pages/Signin";
+import SignUp from "./pages/Signup";
+import Header from "./components/Header";
+
 
 const App = () => {
+  useEffect(() => {
+    const fetchMovie = async () => {
+      try {
+        await movieApi.getAll();
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    fetchMovie();
+  }, []);
+
   return (
     <Switch>
-<<<<<<< HEAD
-      <Route path="/detail" component={Detail} />
+//       <Route path="/detail" component={Detail} />
       <Route path="/signin" component={SignIn} />
       <Route path="/signup" component={SignUp} />
       <Route path="/" exact component={Home} />
-=======
+
       <Header />
-      <Route path="/" component={Home} />
+//       <Route path="/" component={Home} />
+
       <Route path="/movie/:id" component={Detail} />
+      <Route path="/ticketroom/:id" component={TicketRoom} />
+//       <Route path="/" component={Home} />
 
       <Route path="*" component={NotFound} />
->>>>>>> fb7773900aaece51b9676ee4868ff4afbeb837b7
+
     </Switch>
   );
 };
