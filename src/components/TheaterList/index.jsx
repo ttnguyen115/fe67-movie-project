@@ -1,6 +1,6 @@
 import { Tabs, Tab } from "@mui/material";
 import moment from "moment";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import ShowtimePicker from "../ShowtimePicker";
 import TheaterItem from "../TheaterItem";
@@ -9,16 +9,21 @@ import "./css/style.css";
 const TheaterList = () => {
     const { selectedMovie } = useSelector((state) => state.movieReducer);
     const [value, setValue] = useState(0);
-    const [dateValue, setDateValue] = useState(
-        moment(
-            selectedMovie?.heThongRapChieu[0].cumRapChieu[0].lichChieuPhim[0]
-                .ngayChieuGioChieu
-        ).format("L")
-    );
+    const [dateValue, setDateValue] = useState(null);
     const [tabId, setTabId] = useState(0);
-    const [theaterSystem, setTheaterSystem] = useState(
-        selectedMovie?.heThongRapChieu[0]?.cumRapChieu
-    );
+    const [theaterSystem, setTheaterSystem] = useState();
+
+    useEffect(() => {
+        if (!!selectedMovie) {
+            setDateValue(
+                moment(
+                    selectedMovie?.heThongRapChieu[0]?.cumRapChieu[0]
+                        ?.lichChieuPhim[0]?.ngayChieuGioChieu
+                ).format("L")
+            );
+            setTheaterSystem(selectedMovie?.heThongRapChieu[0]?.cumRapChieu);
+        }
+    }, [selectedMovie]);
 
     const handleChangeTheaterSystem = (event, newValue) => {
         setValue(newValue);
@@ -26,7 +31,8 @@ const TheaterList = () => {
     };
 
     const handleChangeTheaterTab = (event) => setTabId(event.target.id);
-    const handleChangeDateValue = (dateValue) => setDateValue(moment(dateValue).format("L"));
+    const handleChangeDateValue = (dateValue) =>
+        setDateValue(moment(dateValue).format("L"));
 
     return (
         <>
@@ -36,16 +42,14 @@ const TheaterList = () => {
                 variant="scrollable"
                 scrollButtons="auto"
             >
-                {
-                    selectedMovie?.heThongRapChieu.map((theater, index) => (
-                        <Tab
-                            key={index}
-                            label={theater.maHeThongRap}
-                            onClick={handleChangeTheaterTab}
-                            id={index}
-                        />
-                    ))
-                }
+                {selectedMovie?.heThongRapChieu.map((theater, index) => (
+                    <Tab
+                        key={index}
+                        label={theater.maHeThongRap}
+                        onClick={handleChangeTheaterTab}
+                        id={index}
+                    />
+                ))}
             </Tabs>
 
             <ShowtimePicker

@@ -20,6 +20,19 @@ const movieReducer = (state = initialState, { type, payload }) => {
             state.loading = false;
             state.error = payload;
             return { ...state };
+        
+        case movieTypes.GET_SHOWTIME_REQUEST:
+            state.loading = true;
+            return { ...state };
+        case movieTypes.GET_SHOWTIME_SUCCESS:
+            state.loading = false;
+            state.error = null;
+            state.selectedMovie = payload;
+            return { ...state };
+        case movieTypes.GET_SHOWTIME_FAIL:
+            state.loading = false;
+            state.error = payload;
+            return { ...state };
 
         default:
             return state;

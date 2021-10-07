@@ -11,11 +11,20 @@ export const movieApi = {
         return axiosClient.get(url);
     },
 
-    getById: id => {
+    getMovieById: id => {
         const url = '/QuanLyRap/LayThongTinLichChieuPhim';
         return axiosClient.get(url, {
             params: {
                 maPhim: id
+            }
+        })
+    },
+
+    getShowtimeByMovieId: id => {
+        const url = '/QuanLyDatVe/LayDanhSachPhongVe';
+        return axiosClient.get(url, {
+            params: {
+                MaLichChieu: id
             }
         })
     }
