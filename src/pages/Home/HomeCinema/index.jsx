@@ -3,6 +3,8 @@ import { Tabs } from "antd";
 import "./index.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchCinemaTimes } from "../../../store/actions/cinema";
+import moment from "moment";
+import { NavLink } from "react-router-dom";
 
 const { TabPane } = Tabs;
 
@@ -80,9 +82,16 @@ const HomeCinema = () => {
                                     ?.slice(0, 2)
                                     .map((lichPhim) => {
                                       return (
-                                        <div className="show-times">
-                                          {lichPhim.ngayChieuGioChieu}
-                                        </div>
+                                        <NavLink
+                                          key={lichPhim.maLichChieu}
+                                          to={`/ticketroom/${lichPhim.maLichChieu}`}
+                                        >
+                                          <div className="show-times">
+                                            {moment(
+                                              lichPhim.ngayChieuGioChieu
+                                            ).format("LT")}
+                                          </div>
+                                        </NavLink>
                                       );
                                     })}
                                 </div>
