@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import React from "react";
 import { Link } from "react-router-dom";
 import background from "../../assets/img/notfound-bg.jpg";
-import "./css/style.css";
+import "./style.scss";
 
 const NotFound = () => {
     return (

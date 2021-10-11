@@ -4,20 +4,19 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchCarousels } from "../../../store/actions/carousel";
 
 const Carousel = () => {
-  // use useSelector connect lên store
-  const fetchCarousel = useSelector((state) => state.CarouselList);
+  const { loading, carouselList } = useSelector((state) => state.carouselList);
+  const dispatch = useDispatch();
 
-  const dispath = useDispatch();
-  // use useEffect lấy data về chay 1 lần
   useEffect(() => {
-    //
-    dispath(fetchCarousels());
-  }, []);
+    dispatch(fetchCarousels());
+  }, [dispatch]);
+
+  if (loading) return <div>Loading...</div>
 
   return (
-    <div>
-      <CarouselItem fetchCarousel={fetchCarousel}></CarouselItem>;
-    </div>
+    <>
+      <CarouselItem carouselList={carouselList} />
+    </>
   );
 };
 

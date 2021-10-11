@@ -8,7 +8,11 @@ export const movieApi = {
 
     getAll: () => {
         const url = '/QuanLyPhim/LayDanhSachPhim';
-        return axiosClient.get(url);
+        return axiosClient.get(url, {
+            params: {
+                maNhom: 'GP07'
+            }
+        });
     },
 
     getMovieById: id => {
@@ -25,6 +29,15 @@ export const movieApi = {
         return axiosClient.get(url, {
             params: {
                 MaLichChieu: id
+            }
+        })
+    },
+
+    getMoviesByCinema: () => {
+        const url = '/QuanLyRap/LayThongTinLichChieuHeThongRap';
+        return axiosClient.get(url, {
+            params: {
+                maNhom: 'GP07'
             }
         })
     }

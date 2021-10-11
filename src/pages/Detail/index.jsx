@@ -7,13 +7,14 @@ import TheaterList from "../../components/TheaterList";
 import VideoTrailer from "../../components/VideoTrailer";
 import { getMovieById } from "../../store/actions/movieAction";
 import { PlayIcon } from "./../../assets/detailIcon";
-import "./css/style.css";
+import "./style.scss";
+import Layout from '../../HOCs/Layout';
 
 const Detail = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
     const { selectedMovie, loading } = useSelector(
-        (state) => state.movieReducer
+        (state) => state.movieList
     );
 
     useEffect(() => {
@@ -23,58 +24,60 @@ const Detail = () => {
     if (loading) return <div>Loading...</div>;
 
     return (
-        <div className="detail">
-            <div
-                className="detail__bg"
-                style={{ backgroundImage: `url(${selectedMovie?.hinhAnh})` }}
-            ></div>
+        <Layout>
+            <div className="detail">
+                <div
+                    className="detail__bg"
+                    style={{ backgroundImage: `url(${selectedMovie?.hinhAnh})` }}
+                ></div>
 
-            <div className="detail__container">
-                <div className="article">
-                    <Grid container>
-                        <Grid item xs={12}>
-                            <a
-                                href={selectedMovie?.trailer}
-                                target="_blank"
-                                className="trailerBtn"
-                                rel="noreferrer"
-                            >
-                                <PlayIcon />
-                                Trailer
-                            </a>
+                <div className="detail__container">
+                    <div className="article">
+                        <Grid container>
+                            <Grid item xs={12}>
+                                <a
+                                    href={selectedMovie?.trailer}
+                                    target="_blank"
+                                    className="trailerBtn"
+                                    rel="noreferrer"
+                                >
+                                    <PlayIcon />
+                                    Trailer
+                                </a>
 
-                            <div className="article__content">
-                                <h2>{selectedMovie?.tenPhim}</h2>
-                                <ul className="list">
-                                    <li>Rating: {selectedMovie?.danhGia}</li>
-                                    <li>
-                                        {selectedMovie?.dangChieu
-                                            ? "Now Showing"
-                                            : selectedMovie?.sapChieu
-                                            ? "Coming Soon"
-                                            : undefined}
-                                    </li>
-                                    <li>
-                                        {moment(
-                                            selectedMovie?.ngayKhoiChieu
-                                        ).format("MMM Do YYYY")}
-                                    </li>
-                                </ul>
-                                <p>{selectedMovie?.moTa}</p>
-                            </div>
+                                <div className="article__content">
+                                    <h2>{selectedMovie?.tenPhim}</h2>
+                                    <ul className="list">
+                                        <li>Rating: {selectedMovie?.danhGia}</li>
+                                        <li>
+                                            {selectedMovie?.dangChieu
+                                                ? "Now Showing"
+                                                : selectedMovie?.sapChieu
+                                                ? "Coming Soon"
+                                                : undefined}
+                                        </li>
+                                        <li>
+                                            {moment(
+                                                selectedMovie?.ngayKhoiChieu
+                                            ).format("MMM Do YYYY")}
+                                        </li>
+                                    </ul>
+                                    <p>{selectedMovie?.moTa}</p>
+                                </div>
+                            </Grid>
+
+                            <Grid item xs={12}>
+                                <VideoTrailer src={selectedMovie?.trailer} />
+                            </Grid>
                         </Grid>
+                    </div>
 
-                        <Grid item xs={12}>
-                            <VideoTrailer src={selectedMovie?.trailer} />
-                        </Grid>
-                    </Grid>
+                    <Box sx={{ borderBottom: 1, borderColor: "divider", marginTop: 2 }}>
+                        <TheaterList />
+                    </Box>
                 </div>
-
-                <Box sx={{ borderBottom: 1, borderColor: "divider", marginTop: 2 }}>
-                    <TheaterList />
-                </Box>
             </div>
-        </div>
+        </Layout>
     );
 };
 

@@ -10,30 +10,21 @@ const { TabPane } = Tabs;
 
 const HomeCinema = () => {
   const [state, setstate] = useState({ tabPosition: "left" });
-
-  // useSelector tạo biến lưu cinema list
-  const fetchCinemaShowTimes = useSelector((state) => state.cinema);
-
-  // dispatch
+  const { loading, cinemaTimes } = useSelector((state) => state.cinema);
   const dispatch = useDispatch();
-
-  // useEffect
+  const { tabPosition } = state;
 
   useEffect(() => {
     dispatch(fetchCinemaTimes());
-  }, []);
+  }, [dispatch]);
 
-  const { content } = fetchCinemaShowTimes.cinemaTimes;
-  // console.log("list", fetchCinemaShowTimes);
-  // console.log("lstCumRap", content);
-
-  const { tabPosition } = state;
+  if (loading) return <div>Loading...</div>
+  
   return (
     <div className="menu-home-items">
       <>
         <Tabs tabPosition={tabPosition}>
-          {/* call api, map logo rạp ở tab={img} */}
-          {content?.map((cinema) => {
+          {cinemaTimes.map((cinema) => {
             return (
               <TabPane
                 tab={

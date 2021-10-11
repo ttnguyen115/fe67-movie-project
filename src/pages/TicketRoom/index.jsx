@@ -10,7 +10,7 @@ import "./css/style.css";
 const TicketRoom = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
-    const { selectedMovie, loading } = useSelector((state) => state.movieReducer);
+    const { selectedMovie, loading } = useSelector((state) => state.movieList);
     const [seatArray, setSeatArray] = useState([]);
 
     useEffect(() => {

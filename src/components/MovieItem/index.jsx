@@ -1,12 +1,14 @@
 import React, { Fragment } from "react";
 import "./index.scss";
 import { Card, CardContent, CardMedia, Typography } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const MovieItem = (movie) => {
-  const { hinhAnh, tenPhim, moTa } = movie.movies;
+  const { hinhAnh, tenPhim, moTa, maPhim } = movie.movies;
   return (
     <div>
-      <div className=" movie-home-item">
+      <Link to={`/movie/${maPhim}`}>
+      {/* <div className=" movie-home-item">
         <a
           className="movie_links social portfolio"
           href="https://www.rafaelalucas.com"
@@ -29,7 +31,7 @@ const MovieItem = (movie) => {
           <span className="movie-home-icon" />
         </a>
         <a className="movie_links logo" />
-      </div>
+      </div> */}
       {/* end about */}
       <div className="movie-content">
         {/* card */}
@@ -40,6 +42,7 @@ const MovieItem = (movie) => {
       </div>
       <h4 className="movie-home-title">{tenPhim}</h4>
       <p className="movie-home-text">{moTa.substr(0, 40) + ".."}</p>
+      </Link>
     </div>
   );
 };

@@ -2,7 +2,7 @@ import React from "react";
 import { Carousel } from "antd";
 import ButtonPlay from "../../components/ButtonPlay";
 
-const CarouselItem = (movie) => {
+const CarouselItem = ({ carouselList }) => {
   const contentStyle = {
     height: "450px",
     color: "#fff",
@@ -11,11 +11,9 @@ const CarouselItem = (movie) => {
     background: "#364d79",
   };
 
-  const { content } = movie.fetchCarousel.CarouselList;
-  // console.log("props", content);
   return (
     <Carousel autoplay>
-      {content?.map((item) => {
+      {carouselList.map((item) => {
         return (
           <Carousel key={item.maPhim} className="w-full" effect="fade">
             <div>
