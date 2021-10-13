@@ -5,7 +5,7 @@ import "./index.scss";
 const Header = () => {
   return (
     <div>
-      <header className="p-4 bg-coolGray-100 text-coolGray-800 header-bg-color  fixed w-full z-10">
+      <header className="fixed z-10 w-full p-4 bg-coolGray-100 text-coolGray-800 header-bg-color">
         <div className="container flex justify-between h-16 mx-auto">
           {/* Logo */}
           <NavLink
@@ -21,7 +21,7 @@ const Header = () => {
             <li className="flex">
               <NavLink
                 to="/"
-                className="flex items-center px-4 -mb-1 border-b-2 border-transparent text-violet-600 border-violet-600 duration-500 hover:text-blue-500"
+                className="flex items-center px-4 -mb-1 duration-500 border-b-2 border-transparent text-violet-600 border-violet-600 hover:text-blue-500"
               >
                 Home
               </NavLink>
@@ -29,7 +29,7 @@ const Header = () => {
             <li className="flex">
               <NavLink
                 to="/"
-                className="flex items-center px-4 -mb-1 border-b-2 border-transparent duration-500 hover:text-blue-500"
+                className="flex items-center px-4 -mb-1 duration-500 border-b-2 border-transparent hover:text-blue-500"
               >
                 Catalog
               </NavLink>
@@ -37,7 +37,7 @@ const Header = () => {
             <li className="flex">
               <NavLink
                 to="/"
-                className="flex items-center px-4 -mb-1 border-b-2 border-transparent duration-500 hover:text-blue-500"
+                className="flex items-center px-4 -mb-1 duration-500 border-b-2 border-transparent hover:text-blue-500"
               >
                 Pricing plans
               </NavLink>
@@ -51,7 +51,7 @@ const Header = () => {
                 <button
                   type="submit"
                   title="Search"
-                  className="p-1 focus:outline-none focus:ring text-blue-500	"
+                  className="p-1 text-blue-500 focus:outline-none focus:ring "
                 >
                   <svg
                     fill="currentColor"
@@ -72,16 +72,16 @@ const Header = () => {
             </div>
 
             <NavLink
-              to="signin"
+              to="/signup"
               type="button"
-              className="hidden px-6 py-2 font-semibold rounded lg:block bg-violet-600 duration-500 hover:text-blue-500 "
+              className="hidden px-6 py-2 font-semibold duration-500 rounded lg:block bg-violet-600 hover:text-blue-500 "
             >
               Sign Up
             </NavLink>
             <NavLink
-              to="signup"
+              to="/signin"
               type="button"
-              className="hidden px-6 py-2 font-semibold rounded lg:block bg-violet-600 duration-500 hover:text-blue-500 "
+              className="hidden px-6 py-2 font-semibold duration-500 rounded lg:block bg-violet-600 hover:text-blue-500 "
             >
               Sign In
             </NavLink>
