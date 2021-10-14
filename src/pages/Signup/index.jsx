@@ -1,18 +1,15 @@
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
-import MuiAlert from "@mui/material/Alert";
-import Snackbar from "@mui/material/Snackbar";
 import { Button, Form, Input } from "antd";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import background from "../../assets/img/notfound-bg.jpg";
+import SnackbarPopup from "../../components/Snackbar";
 import { formRules } from "../../constants/formRules";
 import { signup } from "../../store/actions/user";
 import "./styles.scss";
 
-const Alert = React.forwardRef(function Alert(props, ref) {
-    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
+
 
 const SignUp = () => {
     const dispatch = useDispatch();
@@ -20,8 +17,9 @@ const SignUp = () => {
     const { loading, error } = useSelector((state) => state.user);
 
     const onFinish = (values) => {
-        dispatch(signup(values));
-        history.push("/signin");
+        const handleRedirect = () => history.push("/signin");
+        dispatch(signup(values, handleRedirect));
+        
     };
 
     const onFinishFailed = (errorInfo) => {
@@ -34,13 +32,7 @@ const SignUp = () => {
             style={{ backgroundImage: `url(${background})` }}
         >
             {error && (
-                <Snackbar
-                    open={!!error}
-                    autoHideDuration={3000}
-                    anchorOrigin={{ vertical: "top", horizontal: "right" }}
-                >
-                    <Alert severity="error">{error}</Alert>
-                </Snackbar>
+                <SnackbarPopup error={error} />
             )}
             <div className="form__wrapper">
                 <Form
