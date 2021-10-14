@@ -15,14 +15,11 @@ export const userApi = {
         })
     },
 
-    refreshToken: ({ taiKhoan, token }) => {
-        const url = "/QuanLyNguoiDung/LayThongTinNguoiDung";
-        return axiosClient.get(url, {
+    refreshToken: (token) => {
+        const url = "/QuanLyNguoiDung/ThongTinTaiKhoan";
+        return axiosClient.post(url, {}, {
             headers: {
                 Authorization: "Bearer " + token
-            },
-            params: {
-                taiKhoan
             }
         })
     }

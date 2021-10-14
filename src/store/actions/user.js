@@ -24,3 +24,13 @@ export const signin = (values, handleRedirect) => async dispatch => {
         dispatch(createAction(authTypes.SIGN_IN_FAIL, err.response.data.content));
     }
 }
+
+export const refreshToken = token => async dispatch => {
+    try {
+        dispatch(createAction(authTypes.REFRESH_TOKEN_REQUEST, {}));
+        const { data } = await userApi.refreshToken(token);
+        dispatch(createAction(authTypes.REFRESH_TOKEN_SUCCESS, data.content));
+    } catch (err) {
+        dispatch(createAction(authTypes.REFRESH_TOKEN_FAIL, err.response.data.content));
+    }
+}

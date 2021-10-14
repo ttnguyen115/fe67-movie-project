@@ -7,7 +7,7 @@ import TheaterItem from "../TheaterItem";
 import "./css/style.css";
 
 const TheaterList = () => {
-    const { selectedMovie } = useSelector((state) => state.movieList);
+    const { selectedMovie, loading } = useSelector((state) => state.movieList);
     const [value, setValue] = useState(0);
     const [dateValue, setDateValue] = useState(null);
     const [tabId, setTabId] = useState(0);
@@ -34,6 +34,8 @@ const TheaterList = () => {
     const handleChangeDateValue = (dateValue) =>
         setDateValue(moment(dateValue).format("L"));
 
+    if (loading) return <div>Loading...</div>;
+    
     return (
         <>
             <Tabs

@@ -11,9 +11,13 @@ import SignIn from "./pages/Signin";
 import SignUp from "./pages/Signup";
 import Header from "./components/Header";
 import { AuthRoute } from "./HOCs/Routes";
+import { useDispatch } from "react-redux";
+import { refreshToken } from "./store/actions/user";
 
 
 const App = () => {
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const fetchMovie = async () => {
       try {
@@ -25,6 +29,11 @@ const App = () => {
 
     fetchMovie();
   }, []);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!!token) dispatch(refreshToken(token));
+  }, [dispatch]);
 
   return (
     <Switch>
