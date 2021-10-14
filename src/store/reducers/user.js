@@ -20,6 +20,19 @@ const userReducer = (state = initialState, { type, payload }) => {
             state.error = payload;
             return { ...state };
 
+
+        case authTypes.SIGN_IN_REQUEST:
+            state.loading = true;
+            return { ...state };
+        case authTypes.SIGN_IN_SUCCESS:
+            state.currentUser = payload;
+            state.loading = false;
+            state.error = null;
+            return { ...state };
+        case authTypes.SIGN_IN_FAIL:
+            state.loading = false;
+            state.error = payload;
+            return { ...state };
         default: return state;
     }
 }

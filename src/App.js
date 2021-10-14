@@ -10,6 +10,7 @@ import TicketRoom from "./pages/TicketRoom";
 import SignIn from "./pages/Signin";
 import SignUp from "./pages/Signup";
 import Header from "./components/Header";
+import { AuthRoute } from "./HOCs/Routes";
 
 
 const App = () => {
@@ -27,8 +28,8 @@ const App = () => {
 
   return (
     <Switch>
-      <Route path="/signin" component={SignIn} />
-      <Route path="/signup" component={SignUp} />
+      <AuthRoute path="/signin" component={SignIn} redirectPath="/" />
+      <AuthRoute path="/signup" component={SignUp} redirectPath="/" />
 
       {/* <Header /> */}
       <Route exact path="/" component={Home} />

@@ -9,8 +9,6 @@ import { formRules } from "../../constants/formRules";
 import { signup } from "../../store/actions/user";
 import "./styles.scss";
 
-
-
 const SignUp = () => {
     const dispatch = useDispatch();
     const history = useHistory();
@@ -19,7 +17,6 @@ const SignUp = () => {
     const onFinish = (values) => {
         const handleRedirect = () => history.push("/signin");
         dispatch(signup(values, handleRedirect));
-        
     };
 
     const onFinishFailed = (errorInfo) => {
@@ -51,7 +48,7 @@ const SignUp = () => {
                         className="m-auto mb-7"
                     />
                     <Form.Item
-                        className="ant-col-24 form-control"
+                        className="form-control"
                         label="Username"
                         name="taiKhoan"
                         rules={formRules.usernameRules}

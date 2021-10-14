@@ -12,3 +12,15 @@ export const signup = (values, handleRedirect) => async dispatch => {
         dispatch(createAction(authTypes.SIGN_UP_FAIL, err.response.data.content));
     }
 }
+
+export const signin = (values, handleRedirect) => async dispatch => {
+    try {
+        dispatch(createAction(authTypes.SIGN_IN_REQUEST, {}));
+        const { data } = await userApi.signin(values);
+        dispatch(createAction(authTypes.SIGN_IN_SUCCESS, data.content));
+        localStorage.setItem('token', data.content.accessToken);
+        handleRedirect();
+    } catch (err) {
+        dispatch(createAction(authTypes.SIGN_IN_FAIL, err.response.data.content));
+    }
+}
