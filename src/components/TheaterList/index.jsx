@@ -7,7 +7,7 @@ import TheaterItem from "../TheaterItem";
 import "./css/style.css";
 
 const TheaterList = () => {
-    const { selectedMovie } = useSelector((state) => state.movieReducer);
+    const { selectedMovie } = useSelector((state) => state.movieList);
     const [value, setValue] = useState(0);
     const [dateValue, setDateValue] = useState(null);
     const [tabId, setTabId] = useState(0);

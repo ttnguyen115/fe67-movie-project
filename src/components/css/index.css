@@ -9,15 +9,17 @@
   border-radius: 50%;
   background: transparent;
   transition: all 0.3s linear;
-  &:hover {
-    border: 1px solid blue;
-    color: blue;
-  }
-
-  .btn-play {
-    width: 50px;
-    font-size: 25px;
-    align-items: center;
-    justify-content: center;
-  }
 }
+
+.buttonPlay:hover {
+  border: 1px solid blue;
+  color: blue;
+}
+
+.buttonPlay .btn-play {
+  width: 50px;
+  font-size: 25px;
+  align-items: center;
+  justify-content: center;
+}
+/*# sourceMappingURL=index.css.map */

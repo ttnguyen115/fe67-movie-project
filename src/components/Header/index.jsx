@@ -13,7 +13,7 @@ const Header = () => {
             aria-label="Back to homepage"
             className="flex items-center p-2"
           >
-            <img className="w-10" src="https://i.imgur.com/lC22izJ.png" />
+            <img className="w-10" src="https://i.imgur.com/lC22izJ.png" alt="logo" />
           </NavLink>
 
           {/* menu header */}

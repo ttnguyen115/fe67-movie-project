@@ -9,7 +9,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 body::-webkit-scrollbar-track {
-  background: #151f30;
+  background: #131720;
 }
 
 body {
@@ -20,6 +20,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   --main-bg-color: #131720;
+  background-color: #131720 !important;
 }
 
 code {

@@ -1,25 +1,20 @@
 import React from "react";
-import Header from "../../components/Header";
 import HomeCarousel from "./Carousel";
 import HomeCinema from "./HomeCinema";
 import DropDown from "../../components/Dropdown";
 import FooterHome from "../../components/FooterHome";
 import MovieList from "./MovieList";
+import Layout from "../../HOCs/Layout";
+
 const Home = () => {
   return (
-    <div>
-      <Header></Header>
-
-      <HomeCarousel></HomeCarousel>
-
+    <Layout>
+      <HomeCarousel className="mt-24"></HomeCarousel>
       <DropDown></DropDown>
-
       <MovieList></MovieList>
-
       <HomeCinema></HomeCinema>
-
       <FooterHome></FooterHome>
-    </div>
+    </Layout>
   );
 };
 

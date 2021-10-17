@@ -26,15 +26,14 @@ const App = () => {
 
   return (
     <Switch>
-      // <Route path="/detail" component={Detail} />
       <Route path="/signin" component={SignIn} />
       <Route path="/signup" component={SignUp} />
-      <Route path="/" exact component={Home} />
-      <Header />
-      // <Route path="/" component={Home} />
+
+      {/* <Header /> */}
+      <Route exact path="/" component={Home} />
       <Route path="/movie/:id" component={Detail} />
       <Route path="/ticketroom/:id" component={TicketRoom} />
-      // <Route path="/" component={Home} />
+
       <Route path="*" component={NotFound} />
     </Switch>
   );

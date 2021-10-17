@@ -14,17 +14,21 @@
         padding-right: 10px;
         font-weight: 600;
         font-size: 20px;
+        color: #fff;
       }
       .address {
         font-size: 16px;
+        color: #fff;
       }
       .show-times {
         font-size: 18px;
-        color: blue;
+        color: white;
         font-weight: 400;
         cursor: pointer;
+        transition: all 0.2s linear;
         &:hover {
-          color: #1963dc8a;
+          // color: rgba(236, 228, 228, 0.925);
+          color: rgba(138, 138, 252, 0.89);
         }
       }
     }

@@ -10,30 +10,21 @@ const { TabPane } = Tabs;
 
 const HomeCinema = () => {
   const [state, setstate] = useState({ tabPosition: "left" });
-
-  // useSelector tạo biến lưu cinema list
-  const fetchCinemaShowTimes = useSelector((state) => state.cinema);
-
-  // dispatch
+  const { loading, cinemaTimes } = useSelector((state) => state.cinema);
   const dispatch = useDispatch();
-
-  // useEffect
+  const { tabPosition } = state;
 
   useEffect(() => {
     dispatch(fetchCinemaTimes());
-  }, []);
+  }, [dispatch]);
 
-  const { content } = fetchCinemaShowTimes.cinemaTimes;
-  // console.log("list", fetchCinemaShowTimes);
-  // console.log("lstCumRap", content);
+  if (loading) return <div>Loading...</div>;
 
-  const { tabPosition } = state;
   return (
     <div className="menu-home-items">
       <>
         <Tabs tabPosition={tabPosition}>
-          {/* call api, map logo rạp ở tab={img} */}
-          {content?.map((cinema) => {
+          {cinemaTimes.map((cinema) => {
             return (
               <TabPane
                 tab={
@@ -58,19 +49,19 @@ const HomeCinema = () => {
                               className="rounded-full w-12 h-12"
                               alt=""
                             />
-                            <div>{cumRap.tenCumRap}</div>
+                            <div className="text-white">{cumRap.tenCumRap}</div>
                           </div>
                         }
                         key={cumRap.maCumRap}
                       >
                         <div className="list-movie">
                           {/* map danh sach phim tu cumrap */}
-                          {cumRap.danhSachPhim.map((item) => {
+                          {cumRap.danhSachPhim.map((item, index) => {
                             return (
-                              <div className="list-movie-item">
+                              <div className="list-movie-item" key={index}>
                                 <img src={item.hinhAnh} alt="" />
                                 <div>
-                                  <div className="list-movie-name">
+                                  <div className="list-movie-name ">
                                     {item.tenPhim}
                                   </div>
                                   <div className="address">{cumRap.diaChi}</div>

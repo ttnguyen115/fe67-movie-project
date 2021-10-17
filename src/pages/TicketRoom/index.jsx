@@ -1,16 +1,19 @@
-import { Grid } from "@mui/material";
+import { Grid, Button } from "@mui/material";
+import _ from "lodash";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import SeatRow from "../../components/SeatRow";
 import { splitSeatArray } from "../../helpers/splitSeatArray";
 import { getShowtimeById } from "../../store/actions/movieAction";
-import "./css/style.css";
+import "./style.scss";
 
 const TicketRoom = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { selectedMovie, loading } = useSelector((state) => state.movieReducer);
+  const { selectedMovie, loading, bookingTicket } = useSelector(
+    (state) => state.movieList
+  );
   const [seatArray, setSeatArray] = useState([]);
 
   useEffect(() => {
@@ -23,21 +26,97 @@ const TicketRoom = () => {
     }
   }, [selectedMovie]);
 
-  console.log(selectedMovie);
+  console.log(bookingTicket);
 
+  //
   if (loading) return <div>Loading...</div>;
-
+  const { tenPhim, ngayChieu, gioChieu, tenCumRap, tenRap } =
+    selectedMovie?.thongTinPhim || {};
   return (
     <div className="ticketroom">
-      <Grid container>
-        <Grid item xs={12} md={6}>
+      <div className="grid grid-cols-12">
+        <div className="col-span-8">
           {!!seatArray &&
             seatArray.map((seats, index) => (
               <SeatRow key={index} seatPerRow={seats} />
             ))}
-        </Grid>
-        <Grid item xs={12} md={6}></Grid>
-      </Grid>
+        </div>
+
+        <div className="col-span-4">
+          <div className="ticketroom__left">
+            <div className="ticketroom__left_infoSeat ">
+              <div className="ticketroom__left_infoSeat-a bg-yellow-600"></div>
+              <p className="yel">Ghế Vip</p>
+            </div>
+
+            <div className="ticketroom__left_infoSeat ">
+              <div className="ticketroom__left_infoSeat-a bg-gray-500"></div>
+              <p className="yel">Ghế chưa đặt</p>
+            </div>
+
+            <div className="ticketroom__left_infoSeat ">
+              <div className="ticketroom__left_infoSeat-a bg-green-600"></div>
+              <p className="yel">Ghế đang đặt</p>
+            </div>
+
+            <div className="ticketroom__left_infoSeat ">
+              <div className="ticketroom__left_infoSeat-a bg-red-400"></div>
+              <p className="yel">Ghế đã đặt</p>
+            </div>
+
+            <div className="ticketroom__left-title">{tenPhim}</div>
+            <hr />
+            <div className="ticketroom__left-times">
+              <div>Ngày khởi chiếu: {ngayChieu} </div>
+              <div>{gioChieu}</div>
+            </div>
+            <hr />
+            <div className="ticketroom__left-cinema">
+              <div>{tenCumRap}</div>
+              <div>{tenRap}</div>
+            </div>
+            <hr />
+
+            <div className="ticketroom__left-chair">
+              {_.sortBy(bookingTicket, ["stt"]).map((seat, index) => {
+                return (
+                  <table
+                    className="table-auto ticketroom__left-chair-table"
+                    key={index}
+                  >
+                    <thead>
+                      <tr>
+                        <td>Ghế số: {seat.tenGhe}</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{seat.giaVe}đ</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                );
+              })}
+            </div>
+            <hr />
+            <div className="ticketroom__left-total">
+              <div>Tổng tiền:</div>
+              <div>
+                {bookingTicket
+                  .reduce((total, seat) => {
+                    return (total += seat.giaVe);
+                  }, 0)
+                  .toLocaleString()}
+                đ
+              </div>
+            </div>
+            <hr />
+            <div className="ticketroom__left-btn">
+              <Button variant="contained">BOOKING TICKET</Button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

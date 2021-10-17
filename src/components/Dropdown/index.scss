@@ -1,7 +1,11 @@
 .dropdown {
   display: flex;
-  margin-left: 16px;
-  .right {
-    margin-left: 10px;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 78%;
+  max-height: 50px;
+  padding-left: 100px;
+  .css-d9c359-MuiButtonBase-root-MuiToggleButton-root {
+    color: #fff;
   }
 }
