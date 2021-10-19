@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchCinemaTimes } from "../../../store/actions/cinema";
 import { Tab } from "@material-ui/icons";
 import { Grid, Container } from "@material-ui/core";
+import moment from "moment";
 
 const { TabPane } = Tabs;
 
@@ -30,7 +31,7 @@ const HomeCinema = () => {
                 tab={
                   <img
                     src={cinema.logo}
-                    className="rounded-full w-16 h-16"
+                    className="w-16 h-16 rounded-full"
                     alt=""
                   />
                 }
@@ -43,13 +44,13 @@ const HomeCinema = () => {
                     return (
                       <TabPane
                         tab={
-                          <div className="cum-rap" style={{ display: "flex" }}>
+                          <div className="flex items-center cum-rap">
                             <img
                               src={cumRap.hinhAnh}
-                              className="rounded-full w-12 h-12"
+                              className="w-12 h-12 rounded-full"
                               alt=""
                             />
-                            <div>{cumRap.tenCumRap}</div>
+                            <div className="ml-4 text-white">{cumRap.tenCumRap}</div>
                           </div>
                         }
                         key={cumRap.maCumRap}
@@ -74,7 +75,7 @@ const HomeCinema = () => {
                                     .map((lichPhim) => {
                                       return (
                                         <div className="show-times">
-                                          {lichPhim.ngayChieuGioChieu}
+                                          {moment(lichPhim.ngayChieuGioChieu).format('llll')}
                                         </div>
                                       );
                                     })}

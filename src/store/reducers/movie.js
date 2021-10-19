@@ -2,6 +2,7 @@ import { actionTypes } from "../actions/type";
 
 const initialState = {
   movieList: [],
+  movieDetail: null,
   selectedMovie: null,
   error: null,
   loading: false,
@@ -28,7 +29,7 @@ const reducers = (state = initialState, { type, payload }) => {
     case actionTypes.FETCH_MOVIE_SUCCESS:
       state.loading = false;
       state.error = null;
-      state.selectedMovie = payload;
+      state.movieDetail = payload;
       return { ...state };
     case actionTypes.FETCH_MOVIE_FAIL:
       state.loading = false;

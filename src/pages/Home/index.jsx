@@ -9,8 +9,8 @@ import Layout from '../../HOCs/Layout';
 const Home = () => {
   return (
     <Layout>
-      <HomeCarousel className="mt-24"></HomeCarousel>
-      <DropDown></DropDown>
+      <HomeCarousel></HomeCarousel>
+      {/* <DropDown></DropDown> */}
       <MovieList></MovieList>
       <HomeCinema></HomeCinema>
       <FooterHome></FooterHome>

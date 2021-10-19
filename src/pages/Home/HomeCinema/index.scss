@@ -14,19 +14,27 @@
         padding-right: 10px;
         font-weight: 600;
         font-size: 20px;
+        color: white;
       }
       .address {
+        color: white;
         font-size: 16px;
       }
       .show-times {
         font-size: 18px;
-        color: blue;
+        color: #1890ff;
         font-weight: 400;
         cursor: pointer;
         &:hover {
           color: #1963dc8a;
         }
       }
+    }
+  }
+
+  .ant-tabs-tab.ant-tabs-tab-active .cum-rap {
+    div {
+      color: #1890ff;
     }
   }
 }
