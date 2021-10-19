@@ -45,10 +45,8 @@ const UserProfile = () => {
         console.log("Failed:", errorInfo);
     };
 
-    if (loading) return <div>Loading...</div>;
-
     return (
-        <Layout>
+        <Layout loading={loading}>
             <div className="profile">
                 <h2 className="profile__header">Profile</h2>
 

@@ -64,7 +64,7 @@ const FooterHome = () => {
 
           <div className="grid grid-cols-2 text-sm gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-4 footer-item">
             <div className="space-y-3">
-              <h3 className="tracking-wide uppercase text-coolGray-900">
+              <h3 className="tracking-wide text-gray-100 uppercase">
                 Cybersoft Movie
               </h3>
               <ul className="space-y-1">
@@ -84,7 +84,7 @@ const FooterHome = () => {
             </div>
 
             <div className="space-y-3">
-              <h3 className="tracking-wide uppercase text-coolGray-900">Browse</h3>
+              <h3 className="tracking-wide text-gray-100 uppercase">Browse</h3>
               <ul className="space-y-1">
                 <li>
                   <a href="#">Live TV</a>
@@ -120,7 +120,7 @@ const FooterHome = () => {
             </div>
 
             <div className="space-y-3">
-              <h3 className="uppercase text-coolGray-900">Help</h3>
+              <h3 className="text-gray-100 uppercase">Help</h3>
               <ul className="space-y-1">
                 <li>
                   <a href="#">Account & Billing</a>
@@ -139,7 +139,7 @@ const FooterHome = () => {
           </div>
         </div>
 
-        <div className="py-6 text-sm text-center text-coolGray-600 ">
+        <div className="py-6 text-sm text-center text-gray-100">
           © 1968 Company Co. All rights reserved.
         </div>
       </footer>

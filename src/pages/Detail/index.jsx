@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import TheaterList from "../../components/TheaterList";
 import VideoTrailer from "../../components/VideoTrailer";
-import { getMovieById } from "../../store/actions/movieAction";
+import { getMovieById } from "../../store/actions/movie";
 import { PlayIcon } from "./../../assets/detailIcon";
 import "./style.scss";
 import Layout from '../../HOCs/Layout';
@@ -13,7 +13,7 @@ import Layout from '../../HOCs/Layout';
 const Detail = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
-    const { selectedMovie, loading } = useSelector(
+    const { movieDetail, loading } = useSelector(
         (state) => state.movieList
     );
 
@@ -21,14 +21,12 @@ const Detail = () => {
         dispatch(getMovieById(id));
     }, [dispatch, id]);
 
-    if (loading) return <div>Loading...</div>;
-
     return (
-        <Layout>
+        <Layout loading={loading}>
             <div className="detail">
                 <div
                     className="detail__bg"
-                    style={{ backgroundImage: `url(${selectedMovie?.hinhAnh})` }}
+                    style={{ backgroundImage: `url(${movieDetail?.hinhAnh})` }}
                 ></div>
 
                 <div className="detail__container">
@@ -36,7 +34,7 @@ const Detail = () => {
                         <Grid container>
                             <Grid item xs={12}>
                                 <a
-                                    href={selectedMovie?.trailer}
+                                    href={movieDetail?.trailer}
                                     target="_blank"
                                     className="trailerBtn"
                                     rel="noreferrer"
@@ -46,28 +44,28 @@ const Detail = () => {
                                 </a>
 
                                 <div className="article__content">
-                                    <h2>{selectedMovie?.tenPhim}</h2>
+                                    <h2>{movieDetail?.tenPhim}</h2>
                                     <ul className="list">
-                                        <li>Rating: {selectedMovie?.danhGia}</li>
+                                        <li>Rating: {movieDetail?.danhGia}</li>
                                         <li>
-                                            {selectedMovie?.dangChieu
+                                            {movieDetail?.dangChieu
                                                 ? "Now Showing"
-                                                : selectedMovie?.sapChieu
+                                                : movieDetail?.sapChieu
                                                 ? "Coming Soon"
                                                 : undefined}
                                         </li>
                                         <li>
                                             {moment(
-                                                selectedMovie?.ngayKhoiChieu
+                                                movieDetail?.ngayKhoiChieu
                                             ).format("MMM Do YYYY")}
                                         </li>
                                     </ul>
-                                    <p>{selectedMovie?.moTa}</p>
+                                    <p>{movieDetail?.moTa}</p>
                                 </div>
                             </Grid>
 
                             <Grid item xs={12}>
-                                <VideoTrailer src={selectedMovie?.trailer} />
+                                <VideoTrailer src={movieDetail?.trailer} />
                             </Grid>
                         </Grid>
                     </div>

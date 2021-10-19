@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import SeatRow from "../../components/SeatRow";
 import { splitSeatArray } from "../../helpers/splitSeatArray";
-import { getShowtimeById } from "../../store/actions/movieAction";
+import { getShowtimeById } from "../../store/actions/movie";
 import "./css/style.css";
 
 const TicketRoom = () => {
