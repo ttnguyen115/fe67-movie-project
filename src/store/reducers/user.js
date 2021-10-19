@@ -46,6 +46,20 @@ const userReducer = (state = initialState, { type, payload }) => {
             state.loading = false;
             state.error = payload;
             return { ...state };
+        
+        case authTypes.EDIT_USER_REQUEST:
+            state.loading = true;
+            return { ...state };
+        case authTypes.EDIT_USER_SUCCESS:
+            state.currentUser = payload;
+            state.loading = false;
+            state.error = null;
+            return { ...state };
+        case authTypes.EDIT_USER_FAIL:
+            state.loading = false;
+            state.error = payload;
+            return { ...state };
+        
         default: return state;
     }
 }

@@ -31,6 +31,18 @@ export const refreshToken = token => async dispatch => {
         const { data } = await userApi.refreshToken(token);
         dispatch(createAction(authTypes.REFRESH_TOKEN_SUCCESS, data.content));
     } catch (err) {
-        dispatch(createAction(authTypes.REFRESH_TOKEN_FAIL, err.response.data.content));
+        dispatch(createAction(authTypes.REFRESH_TOKEN_FAIL, err.response?.data.content));
+    }
+}
+
+export const editUserInfo = values => async dispatch => {
+    try {
+        const token = localStorage.getItem('token');
+        dispatch(createAction(authTypes.EDIT_USER_REQUEST, {}));
+        const res = userApi.editUser({ ...values, token });
+        console.log(res);
+        // dispatch(createAction(authTypes.EDIT_USER_SUCCESS, data.content));
+    } catch (err) {
+        dispatch(createAction(authTypes.EDIT_USER_FAIL, err.response.data.content))
     }
 }
