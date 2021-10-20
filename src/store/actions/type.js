@@ -41,3 +41,10 @@ export const authTypes = {
   EDIT_USER_SUCCESS: 'EDIT_USER_SUCCESS',
   EDIT_USER_FAIL: 'EDIT_USER_FAIL',
 }
+
+export const adminTypes = {
+  IS_ADMIN: "IS_ADMIN",
+  IS_OPEN_SIDEBAR: "IS_OPEN_SIDEBAR",
+
+
+}

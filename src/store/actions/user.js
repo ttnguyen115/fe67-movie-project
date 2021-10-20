@@ -1,6 +1,6 @@
 import { createAction } from "."
 import { userApi } from "../../api/userApi";
-import { authTypes } from "./type"
+import { authTypes, adminTypes } from "./type"
 
 export const signup = (values, handleRedirect) => async dispatch => {
     try {
@@ -18,7 +18,12 @@ export const signin = (values, handleRedirect) => async dispatch => {
         dispatch(createAction(authTypes.SIGN_IN_REQUEST, {}));
         const { data } = await userApi.signin(values);
         dispatch(createAction(authTypes.SIGN_IN_SUCCESS, data.content));
+
+        if (data.content.maLoaiNguoiDung === 'QuanTri') {
+            dispatch(createAction(adminTypes.IS_ADMIN, true));
+        }
         localStorage.setItem('token', data.content.accessToken);
+
         handleRedirect();
     } catch (err) {
         dispatch(createAction(authTypes.SIGN_IN_FAIL, err.response.data.content));
@@ -29,6 +34,9 @@ export const refreshToken = token => async dispatch => {
     try {
         dispatch(createAction(authTypes.REFRESH_TOKEN_REQUEST, {}));
         const { data } = await userApi.refreshToken(token);
+        if (data.content.maLoaiNguoiDung === 'QuanTri') {
+            dispatch(createAction(adminTypes.IS_ADMIN, true));
+        }
         dispatch(createAction(authTypes.REFRESH_TOKEN_SUCCESS, data.content));
     } catch (err) {
         dispatch(createAction(authTypes.REFRESH_TOKEN_FAIL, err.response?.data.content));
