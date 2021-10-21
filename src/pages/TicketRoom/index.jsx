@@ -3,13 +3,14 @@ import _ from "lodash";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
+import LoadingSpin from "../../components/LoadingSpin";
 import SeatRow from "../../components/SeatRow";
 import { splitSeatArray } from "../../helpers/splitSeatArray";
 import Layout from '../../HOCs/Layout';
 import {
-  getShowtimeById,
-  postBookTicket
-} from "../../store/actions/movieAction";
+    getShowtimeById,
+    postBookTicket
+} from "../../store/actions/movie";
 import "./style.scss";
 
 
@@ -30,11 +31,7 @@ const TicketRoom = () => {
             setSeatArray(splitSeatArray(selectedMovie.danhSachGhe));
         }
     }, [selectedMovie]);
-
-    // console.log(bookingTicket);
-
-    //
-    if (loading) return <div>Loading...</div>;
+    
 
     const { tenPhim, ngayChieu, gioChieu, tenCumRap, tenRap } =
         selectedMovie?.thongTinPhim || {};
@@ -56,6 +53,8 @@ const TicketRoom = () => {
             })
         );
     };
+
+    if (loading) return <LoadingSpin />;
 
     return (
         <Layout>
