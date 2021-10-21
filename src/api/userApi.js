@@ -8,12 +8,14 @@ export const userApi = {
         });
     },
 
-    signin: ({ taiKhoan, matKhau }) => {
-        const url = "/QuanLyNguoiDung/DangNhap";
-        return axiosClient.post(url, {
-            taiKhoan, matKhau, maNhom: "GP07"
-        })
-    },
+  signin: ({ taiKhoan, matKhau }) => {
+    const url = "/QuanLyNguoiDung/DangNhap";
+    return axiosClient.post(url, {
+      taiKhoan,
+      matKhau,
+      maNhom: "GP07",
+    });
+  },
 
     refreshToken: (token) => {
         const url = "/QuanLyNguoiDung/ThongTinTaiKhoan";

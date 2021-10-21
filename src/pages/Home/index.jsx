@@ -4,7 +4,7 @@ import HomeCinema from "./HomeCinema";
 import DropDown from "../../components/Dropdown";
 import FooterHome from "../../components/FooterHome";
 import MovieList from "./MovieList";
-import Layout from '../../HOCs/Layout';
+import Layout from "../../HOCs/Layout";
 
 const Home = () => {
   return (

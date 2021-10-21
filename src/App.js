@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { Route, Switch } from "react-router";
 
 import { movieApi } from "./api/movieApi";
-import Detail from './pages/Detail';
-import Home from './pages/Home';
+import Detail from "./pages/Detail";
+import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import TicketRoom from "./pages/TicketRoom";
 
@@ -14,7 +14,6 @@ import { AuthRoute, PrivateRoute } from "./HOCs/Routes";
 import { useDispatch } from "react-redux";
 import { refreshToken } from "./store/actions/user";
 import Admin from "./pages/Admin";
-
 
 const App = () => {
   const dispatch = useDispatch();
@@ -31,7 +30,7 @@ const App = () => {
       } catch (err) {
         console.log(err);
       }
-    }
+    };
 
     fetchMovie();
   }, []);
@@ -51,7 +50,6 @@ const App = () => {
       <Route path="/ticketroom/:id" component={TicketRoom} />
 
       <Route path="*" component={NotFound} />
-
     </Switch>
   );
 };

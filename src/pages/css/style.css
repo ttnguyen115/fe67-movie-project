@@ -1,1 +1,51 @@
-/* No CSS *//*# sourceMappingURL=style.css.map */
+.ticketroom {
+  margin-top: 100px;
+  line-height: 50px;
+}
+
+.ticketroom__left {
+  width: 70%;
+  color: #fff;
+}
+
+.ticketroom__left_infoSeat {
+  display: flex;
+}
+
+.ticketroom__left_infoSeat-a {
+  width: 45px;
+  height: 40px;
+  margin-right: 16px;
+}
+
+.ticketroom__left-title {
+  font-size: 36px;
+  text-align: center;
+}
+
+.ticketroom__left-times {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ticketroom__left-cinema {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ticketroom__left-chair-table {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ticketroom__left-total {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ticketroom__left-btn {
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+/*# sourceMappingURL=style.css.map */

@@ -3,9 +3,8 @@ import { Tabs } from "antd";
 import "./index.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchCinemaTimes } from "../../../store/actions/cinema";
-import { Tab } from "@material-ui/icons";
-import { Grid, Container } from "@material-ui/core";
 import moment from "moment";
+import { NavLink } from "react-router-dom";
 
 const { TabPane } = Tabs;
 
@@ -19,8 +18,8 @@ const HomeCinema = () => {
     dispatch(fetchCinemaTimes());
   }, [dispatch]);
 
-  if (loading) return <div>Loading...</div>
-  
+  if (loading) return <div>Loading...</div>;
+
   return (
     <div className="menu-home-items">
       <>
@@ -57,12 +56,12 @@ const HomeCinema = () => {
                       >
                         <div className="list-movie">
                           {/* map danh sach phim tu cumrap */}
-                          {cumRap.danhSachPhim.map((item) => {
+                          {cumRap.danhSachPhim.map((item, index) => {
                             return (
-                              <div className="list-movie-item">
+                              <div className="list-movie-item" key={index}>
                                 <img src={item.hinhAnh} alt="" />
                                 <div>
-                                  <div className="list-movie-name">
+                                  <div className="list-movie-name ">
                                     {item.tenPhim}
                                   </div>
                                   <div className="address">{cumRap.diaChi}</div>
@@ -74,9 +73,16 @@ const HomeCinema = () => {
                                     ?.slice(0, 2)
                                     .map((lichPhim) => {
                                       return (
-                                        <div className="show-times">
-                                          {moment(lichPhim.ngayChieuGioChieu).format('llll')}
-                                        </div>
+                                        <NavLink
+                                          key={lichPhim.maLichChieu}
+                                          to={`/ticketroom/${lichPhim.maLichChieu}`}
+                                        >
+                                          <div className="show-times">
+                                            {moment(
+                                              lichPhim.ngayChieuGioChieu
+                                            ).format("LT")}
+                                          </div>
+                                        </NavLink>
                                       );
                                     })}
                                 </div>

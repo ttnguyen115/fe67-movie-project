@@ -12,20 +12,22 @@ const MovieList = () => {
     dispatch(fetchMovies());
   }, [dispatch]);
 
-  if (loading) return <div>Loading...</div>
+  if (loading) return <div>Loading...</div>;
 
   return (
-    <Container maxWidth="lg">
-      <Grid container spacing={3}>
-        {movieList?.map((movies) => {
-          return (
-            <Grid key={movies.maPhim} item xs={12} sm={6} md={3}>
-              <MovieItem movies={movies} />
-            </Grid>
-          );
-        })}
-      </Grid>
-    </Container>
+    <div className="bg-gray-900">
+      <Container maxWidth="lg">
+        <Grid container spacing={3}>
+          {movieList?.map((movies) => {
+            return (
+              <Grid key={movies.maPhim} item xs={12} sm={6} md={3}>
+                <MovieItem movies={movies} />
+              </Grid>
+            );
+          })}
+        </Grid>
+      </Container>
+    </div>
   );
 };
 
