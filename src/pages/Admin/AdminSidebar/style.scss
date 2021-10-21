@@ -125,3 +125,13 @@
         transform: translateX(0);
     }
 }
+
+@media screen and (min-width: 1200px) {
+    .admin--sidebar {
+        transform: translateX(0);
+        
+        &__logo {
+            height: 80px;
+        }
+    }
+}

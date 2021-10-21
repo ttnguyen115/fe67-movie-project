@@ -8,25 +8,20 @@ import AdminSidebar from "./AdminSidebar";
 const Admin = () => {
     const { id } = useParams();
     const history = useHistory();
-    const [adminChildren, setAdminChildren] = React.useState(<AdminMovie />);
 
-    React.useEffect(() => {
-        switch (id) {
-            case "users":
-                setAdminChildren(<AdminUser />);
-                break;
+    const handleRedirect = () => history.push("/*");
 
-            case "films":
-                setAdminChildren(<AdminMovie />);
-                break;
-
-            default:
-                history.push("/*");
-                break;
-        }
-    }, [id, history]);
-
-    return <AdminWrapper>{adminChildren}</AdminWrapper>;
+    return (
+        <AdminWrapper>
+            {id === "films" ? (
+                <AdminMovie />
+            ) : id === "users" ? (
+                <AdminUser />
+            ) : (
+                handleRedirect
+            )}
+        </AdminWrapper>
+    );
 };
 
 const AdminWrapper = ({ children }) => {
