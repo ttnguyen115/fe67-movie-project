@@ -86,7 +86,7 @@ const SignUp = () => {
                     <Form.Item
                         className="form-control"
                         label="Phone"
-                        name="soDt"
+                        name="soDT"
                         rules={formRules.phoneRules}
                         wrapperCol={{ span: 24 }}
                     >

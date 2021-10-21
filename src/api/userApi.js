@@ -34,4 +34,27 @@ export const userApi = {
       }
     );
   },
+
+  editUser: ({ taiKhoan, matKhau, email, soDT, hoTen, token }) => {
+    const url = "/QuanLyNguoiDung/CapNhatThongTinNguoiDung";
+    return axiosClient.put(
+      url,
+      {
+        nd: {
+          taiKhoan,
+          matKhau,
+          email,
+          soDT,
+          hoTen,
+          maNhom: "GP07",
+          maLoaiNguoiDung: "KhachHang",
+        },
+      },
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
+  },
 };
