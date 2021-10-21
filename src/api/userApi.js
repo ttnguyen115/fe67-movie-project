@@ -1,13 +1,13 @@
 import axiosClient from ".";
 
 export const userApi = {
-  signup: ({ taiKhoan, matKhau, email, soDt, hoTen }) => {
+  signup: ({ taiKhoan, matKhau, email, soDT, hoTen }) => {
     const url = "/QuanLyNguoiDung/DangKy";
     return axiosClient.post(url, {
       taiKhoan,
       matKhau,
       email,
-      soDt,
+      soDT,
       maNhom: "GP07",
       hoTen,
     });

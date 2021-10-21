@@ -13,6 +13,7 @@ import UserProfile from './pages/UserProfile';
 import { AuthRoute, PrivateRoute } from "./HOCs/Routes";
 import { useDispatch } from "react-redux";
 import { refreshToken } from "./store/actions/user";
+import Admin from "./pages/Admin";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -40,7 +41,9 @@ const App = () => {
     <Switch>
       <AuthRoute path="/signin" component={SignIn} redirectPath="/" />
       <AuthRoute path="/signup" component={SignUp} redirectPath="/" />
+
       <PrivateRoute path="/profile" component={UserProfile} redirectPath="/signin" />
+      <PrivateRoute path="/admin/:id" component={Admin} redirectPath="/signin" />
       
       <Route exact path="/" component={Home} />
       <Route path="/movie/:id" component={Detail} />

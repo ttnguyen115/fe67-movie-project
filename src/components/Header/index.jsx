@@ -1,10 +1,15 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import "./index.scss";
-import { useSelector } from "react-redux";
+import "./style.scss";
+import { Input } from "antd";
+import { SearchOutlined } from "@ant-design/icons";
 
 const Header = () => {
-    const { currentUser } = useSelector((state) => state.user);
+    const { loading, currentUser } = useSelector((state) => state.user);
+    const { isAdmin } = useSelector((state) => state.admin);
+    const onSearch = (value) => console.log(value);
 
     return (
         <header className="fixed z-10 w-full p-4 bg-coolGray-100 text-coolGray-800 header-bg-color">
@@ -23,7 +28,7 @@ const Header = () => {
                 </NavLink>
 
                 {/* menu header */}
-                <ul className="items-stretch hidden space-x-3 lg:flex">
+                {/* <ul className="items-stretch hidden space-x-3 lg:flex">
                     <li className="flex">
                         <NavLink
                             to="/"
@@ -48,10 +53,10 @@ const Header = () => {
                             Pricing plans
                         </NavLink>
                     </li>
-                </ul>
+                </ul> */}
 
                 {/* search, login */}
-                <div className="flex items-center md:space-x-4">
+                {/* <div className="flex items-center md:space-x-4">
                     <div className="relative">
                         <span className="absolute inset-y-0 right-0 flex items-center pl-2 ">
                             <button
@@ -104,7 +109,56 @@ const Header = () => {
                             </NavLink>
                         </React.Fragment>
                     )}
-                </div>
+                </div> */}
+                <Input.Search
+                    placeholder="Search"
+                    onSearch={onSearch}
+                    enterButton
+                    className="header__search"
+                    suffix={
+                        <SearchOutlined
+                            style={{ color: "#fff", fontSize: 14 }}
+                        />
+                    }
+                />
+
+                {!!currentUser ? (
+                    <React.Fragment>
+                        {isAdmin && (
+                            <NavLink
+                                to="/admin/films"
+                                type="button"
+                                className="hidden px-6 py-2 font-semibold duration-500 rounded lg:block bg-violet-600 hover:text-blue-500 user__btn"
+                            >
+                                Admin Dashboard
+                            </NavLink>
+                        )}
+                        <NavLink
+                            to="/profile"
+                            type="button"
+                            className="hidden px-6 py-2 font-semibold duration-500 rounded lg:block bg-violet-600 hover:text-blue-500 user__btn"
+                        >
+                            {currentUser.taiKhoan}
+                        </NavLink>
+                    </React.Fragment>
+                ) : (
+                    <React.Fragment>
+                        <NavLink
+                            to="/signup"
+                            type="button"
+                            className="hidden px-6 py-2 font-semibold duration-500 rounded lg:block bg-violet-600 hover:text-blue-500 "
+                        >
+                            Sign Up
+                        </NavLink>
+                        <NavLink
+                            to="/signin"
+                            type="button"
+                            className="hidden px-6 py-2 font-semibold duration-500 rounded lg:block bg-violet-600 hover:text-blue-500 "
+                        >
+                            Sign In
+                        </NavLink>
+                    </React.Fragment>
+                )}
 
                 <button
                     title="Open menu"

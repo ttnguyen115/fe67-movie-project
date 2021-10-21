@@ -1,6 +1,7 @@
-import { actionTypes } from "./type";
+import { actionTypes, authTypes } from "./type";
 import { createAction } from ".";
 import { movieApi } from "../../api/movieApi";
+import { userApi } from '../../api/userApi';
 
 export const getMovieById = id => async dispatch => {
     try {
@@ -31,3 +32,19 @@ export const fetchMovies = () => async dispatch => {
     dispatch(createAction(actionTypes.FETCH_MOVIES_SUCCESS, err));
   }
 };
+
+export const postBookTicket = bookTicket => async dispatch => {
+  const token = localStorage.getItem('token');
+  
+  try {
+    dispatch(createAction(actionTypes.POST_BOOK_TICKET_REQUEST, {}));
+    const { data } = await movieApi.postBookTicket(bookTicket, token);
+    dispatch(createAction(actionTypes.POST_BOOK_TICKET_SUCCESS, data.content));
+
+    dispatch(createAction(authTypes.REFRESH_TOKEN_REQUEST, {}));
+    const res = await userApi.refreshToken(token);
+    dispatch(createAction(authTypes.REFRESH_TOKEN_SUCCESS, res.data.content));
+  } catch (err) {
+    dispatch(createAction(actionTypes.FETCH_CINEMA_FAILURE, err));
+  }
+}
