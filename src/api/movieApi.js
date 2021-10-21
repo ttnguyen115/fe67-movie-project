@@ -1,44 +1,57 @@
 import axiosClient from ".";
-
+import { BookTicket } from "../../src/model/bookTicket";
 export const movieApi = {
-    getBanners: () => {
-        const url = '/QuanLyPhim/LayDanhSachBanner';
-        return axiosClient.get(url);
-    },
+  getBanners: () => {
+    const url = "/QuanLyPhim/LayDanhSachBanner";
+    return axiosClient.get(url);
+  },
 
-    getAll: () => {
-        const url = '/QuanLyPhim/LayDanhSachPhim';
-        return axiosClient.get(url, {
-            params: {
-                maNhom: 'GP07'
-            }
-        });
-    },
+  getAll: () => {
+    const url = "/QuanLyPhim/LayDanhSachPhim";
+    return axiosClient.get(url, {
+      params: {
+        maNhom: "GP07",
+      },
+    });
+  },
 
-    getMovieById: id => {
-        const url = '/QuanLyRap/LayThongTinLichChieuPhim';
-        return axiosClient.get(url, {
-            params: {
-                maPhim: id
-            }
-        })
-    },
+  getMovieById: (id) => {
+    const url = "/QuanLyRap/LayThongTinLichChieuPhim";
+    return axiosClient.get(url, {
+      params: {
+        maPhim: id,
+      },
+    });
+  },
 
-    getShowtimeByMovieId: id => {
-        const url = '/QuanLyDatVe/LayDanhSachPhongVe';
-        return axiosClient.get(url, {
-            params: {
-                MaLichChieu: id
-            }
-        })
-    },
+  getShowtimeByMovieId: (id) => {
+    const url = "/QuanLyDatVe/LayDanhSachPhongVe";
+    return axiosClient.get(url, {
+      params: {
+        MaLichChieu: id,
+      },
+    });
+  },
 
-    getMoviesByCinema: () => {
-        const url = '/QuanLyRap/LayThongTinLichChieuHeThongRap';
-        return axiosClient.get(url, {
-            params: {
-                maNhom: 'GP07'
-            }
-        })
-    }
-}
+  postBookTicket: (bookTicket = new BookTicket(), token) => {
+    const url = "/QuanLyDatVe/DatVe";
+    return axiosClient.post(
+      url,
+      { bookTicket },
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
+  },
+
+  getMoviesByCinema: () => {
+    const url = "/QuanLyRap/LayThongTinLichChieuHeThongRap";
+    return axiosClient.get(url, {
+      params: {
+        maNhom: "GP07",
+      },
+    });
+  },
+};

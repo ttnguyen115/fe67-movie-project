@@ -5,7 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import SeatRow from "../../components/SeatRow";
 import { splitSeatArray } from "../../helpers/splitSeatArray";
-import { getShowtimeById } from "../../store/actions/movieAction";
+import {
+  getShowtimeById,
+  postBookTicket,
+} from "../../store/actions/movieAction";
+import { BookTicket } from "../../model/bookTicket";
+
 import "./style.scss";
 
 const TicketRoom = () => {
@@ -26,12 +31,24 @@ const TicketRoom = () => {
     }
   }, [selectedMovie]);
 
-  console.log(bookingTicket);
+  // console.log(bookingTicket);
 
   //
   if (loading) return <div>Loading...</div>;
+
   const { tenPhim, ngayChieu, gioChieu, tenCumRap, tenRap } =
     selectedMovie?.thongTinPhim || {};
+
+  const handleSubmit = () => {
+    //  lấy bookTicket từ movieAction
+    const bookTicket = new BookTicket();
+    bookTicket.maLichChieu = id;
+    bookTicket.danhSachVe = bookingTicket;
+
+    console.log(bookTicket);
+    dispatch(postBookTicket(bookTicket));
+  };
+
   return (
     <div className="ticketroom">
       <div className="grid grid-cols-12">
@@ -112,7 +129,9 @@ const TicketRoom = () => {
             </div>
             <hr />
             <div className="ticketroom__left-btn">
-              <Button variant="contained">BOOKING TICKET</Button>
+              <Button onClick={handleSubmit} variant="contained">
+                BOOKING TICKET
+              </Button>
             </div>
           </div>
         </div>

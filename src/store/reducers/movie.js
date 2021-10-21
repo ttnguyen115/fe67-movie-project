@@ -6,6 +6,7 @@ const initialState = {
   error: null,
   loading: false,
   bookingTicket: [],
+  bookTicket: {},
 };
 
 const reducers = (state = initialState, { type, payload }) => {
@@ -45,6 +46,19 @@ const reducers = (state = initialState, { type, payload }) => {
       state.selectedMovie = payload;
       return { ...state };
     case actionTypes.FETCH_SHOWTIME_FAIL:
+      state.loading = false;
+      state.error = payload;
+      return { ...state };
+
+    case actionTypes.POST_bOOK_TICKET_REQUEST:
+      state.loading = true;
+      return { ...state };
+    case actionTypes.POST_bOOK_TICKET_SUCCESS:
+      state.loading = false;
+      state.error = null;
+      state.bookTicket = payload;
+      return { ...state };
+    case actionTypes.POST_bOOK_TICKET_FAIL:
       state.loading = false;
       state.error = payload;
       return { ...state };
