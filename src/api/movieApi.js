@@ -33,11 +33,11 @@ export const movieApi = {
     });
   },
 
-  postBookTicket: (bookTicket = new BookTicket(), token) => {
+  postBookTicket: (bookTicket, token) => {
+    console.log(bookTicket)
     const url = "/QuanLyDatVe/DatVe";
     return axiosClient.post(
-      url,
-      { bookTicket },
+      url, bookTicket,
       {
         headers: {
           Authorization: "Bearer " + token,

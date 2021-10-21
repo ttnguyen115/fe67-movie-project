@@ -41,12 +41,12 @@ const TicketRoom = () => {
 
   const handleSubmit = () => {
     //  lấy bookTicket từ movieAction
-    const bookTicket = new BookTicket();
-    bookTicket.maLichChieu = id;
-    bookTicket.danhSachVe = bookingTicket;
+    // const bookTicket = new BookTicket();
+    // bookTicket.maLichChieu = id;
+    // bookTicket.danhSachVe = bookingTicket;
 
-    console.log(bookTicket);
-    dispatch(postBookTicket(bookTicket));
+    const newBookingTicketList = bookingTicket.map(item => ({ maGhe: item.maGhe, giaVe: item.giaVe }));
+    dispatch(postBookTicket({ danhSachVe: newBookingTicketList, maLichChieu: id }));
   };
 
   return (
@@ -62,22 +62,22 @@ const TicketRoom = () => {
         <div className="col-span-4">
           <div className="ticketroom__left">
             <div className="ticketroom__left_infoSeat ">
-              <div className="ticketroom__left_infoSeat-a bg-yellow-600"></div>
+              <div className="bg-yellow-600 ticketroom__left_infoSeat-a"></div>
               <p className="yel">Ghế Vip</p>
             </div>
 
             <div className="ticketroom__left_infoSeat ">
-              <div className="ticketroom__left_infoSeat-a bg-gray-500"></div>
+              <div className="bg-gray-500 ticketroom__left_infoSeat-a"></div>
               <p className="yel">Ghế chưa đặt</p>
             </div>
 
             <div className="ticketroom__left_infoSeat ">
-              <div className="ticketroom__left_infoSeat-a bg-green-600"></div>
+              <div className="bg-green-600 ticketroom__left_infoSeat-a"></div>
               <p className="yel">Ghế đang đặt</p>
             </div>
 
             <div className="ticketroom__left_infoSeat ">
-              <div className="ticketroom__left_infoSeat-a bg-red-400"></div>
+              <div className="bg-red-400 ticketroom__left_infoSeat-a"></div>
               <p className="yel">Ghế đã đặt</p>
             </div>
 
@@ -129,7 +129,7 @@ const TicketRoom = () => {
             </div>
             <hr />
             <div className="ticketroom__left-btn">
-              <Button onClick={handleSubmit} variant="contained">
+              <Button onClick={handleSubmit} variant="contained" type="button">
                 BOOKING TICKET
               </Button>
             </div>

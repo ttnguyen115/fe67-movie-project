@@ -1,7 +1,8 @@
 import { createAction } from ".";
-import { actionTypes } from "./type";
+import { actionTypes, authTypes } from "./type";
 import { movieApi } from "./../../api/movieApi";
 import { BookTicket } from "../../model/bookTicket";
+import { userApi } from "../../api/userApi";
 
 export const getMovieById = (id) => async (dispatch) => {
   try {
@@ -23,18 +24,18 @@ export const getShowtimeById = (id) => async (dispatch) => {
   }
 };
 
-export const postBookTicket =
-  (bookTicket = new BookTicket()) =>
-  async (dispatch) => {
+export const postBookTicket = bookTicket => async dispatch => {
+  console.log(bookTicket)
+    const token = localStorage.getItem('token');
     try {
-      dispatch(createAction(actionTypes.POST_bOOK_TICKET_REQUEST, {}));
-      const { data } = await movieApi.postBookTicket(bookTicket);
-      dispatch(
-        createAction(actionTypes.POST_bOOK_TICKET_SUCCESS, data.content)
-      );
-      localStorage.getItem("token", data.content.accessToken);
+      dispatch(createAction(actionTypes.POST_BOOK_TICKET_REQUEST, {}));
+      const { data } = await movieApi.postBookTicket(bookTicket, token);
+      dispatch(createAction(actionTypes.POST_BOOK_TICKET_SUCCESS, data.content));
+
+      dispatch(createAction(authTypes.REFRESH_TOKEN_REQUEST, {}));
+      const res = await userApi.refreshToken(token);
+      dispatch(createAction(authTypes.REFRESH_TOKEN_SUCCESS, res.data.content));
     } catch (err) {
-      console.log(err.response.data);
-      dispatch(createAction(actionTypes.POST_bOOK_TICKET_FAIL, err));
+      dispatch(createAction(actionTypes.POST_BOOK_TICKET_FAIL, err));
     }
   };
