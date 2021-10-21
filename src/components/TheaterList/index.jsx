@@ -7,27 +7,27 @@ import TheaterItem from "../TheaterItem";
 import "./css/style.css";
 
 const TheaterList = () => {
-    const { selectedMovie, loading } = useSelector((state) => state.movieList);
+    const { movieDetail, loading } = useSelector((state) => state.movieList);
     const [value, setValue] = useState(0);
     const [dateValue, setDateValue] = useState(null);
     const [tabId, setTabId] = useState(0);
     const [theaterSystem, setTheaterSystem] = useState();
 
     useEffect(() => {
-        if (!!selectedMovie) {
+        if (!!movieDetail) {
             setDateValue(
                 moment(
-                    selectedMovie?.heThongRapChieu[0]?.cumRapChieu[0]
+                    movieDetail?.heThongRapChieu[0]?.cumRapChieu[0]
                         ?.lichChieuPhim[0]?.ngayChieuGioChieu
                 ).format("L")
             );
-            setTheaterSystem(selectedMovie?.heThongRapChieu[0]?.cumRapChieu);
+            setTheaterSystem(movieDetail?.heThongRapChieu[0]?.cumRapChieu);
         }
-    }, [selectedMovie]);
+    }, [movieDetail]);
 
     const handleChangeTheaterSystem = (event, newValue) => {
         setValue(newValue);
-        setTheaterSystem(selectedMovie?.heThongRapChieu[newValue]?.cumRapChieu);
+        setTheaterSystem(movieDetail?.heThongRapChieu[newValue]?.cumRapChieu);
     };
 
     const handleChangeTheaterTab = (event) => setTabId(event.target.id);
@@ -44,7 +44,7 @@ const TheaterList = () => {
                 variant="scrollable"
                 scrollButtons="auto"
             >
-                {selectedMovie?.heThongRapChieu.map((theater, index) => (
+                {movieDetail?.heThongRapChieu.map((theater, index) => (
                     <Tab
                         key={index}
                         label={theater.maHeThongRap}

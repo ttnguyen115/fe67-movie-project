@@ -12,7 +12,7 @@ const CarouselItem = ({ carouselList }) => {
   };
 
   return (
-    <Carousel autoplay>
+    <Carousel autoplay className="pt-24"> 
       {carouselList.map((item) => {
         return (
           <Carousel key={item.maPhim} className="w-full" effect="fade">

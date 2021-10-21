@@ -51,10 +51,6 @@ export const formRules = {
         {
             required: true,
             message: "Please input full name!"
-        },
-        {
-            pattern: /^[a-zA-Z]{4,}(?: [a-zA-Z]+){0,2}$/,
-            message: "Your full name must be at least 2 words!"
         }
     ]
 }

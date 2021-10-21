@@ -1,12 +1,14 @@
 import React from 'react'
 import Header from '../../components/Header'
+import LoadingSpin from '../../components/LoadingSpin';
 
-const Layout = ({ children }) => {
+const Layout = ({ loading, children }) => {
     return (
-        <>
+        <React.Fragment>
             <Header />
             {children}
-        </>
+            { loading && <LoadingSpin /> }
+        </React.Fragment>
     )
 }
 
