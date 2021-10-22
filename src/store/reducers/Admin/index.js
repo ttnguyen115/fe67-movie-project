@@ -1,4 +1,4 @@
-import { adminTypes } from "../actions/type"
+import { adminTypes } from "../../actions/type"
 
 const initialState = {
     isAdmin: false,
