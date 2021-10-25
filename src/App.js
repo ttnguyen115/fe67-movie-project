@@ -43,7 +43,7 @@ const App = () => {
       <AuthRoute path="/signup" component={SignUp} redirectPath="/" />
 
       <PrivateRoute path="/profile" component={UserProfile} redirectPath="/signin" />
-      <PrivateRoute path="/admin/:id" component={Admin} redirectPath="/signin" />
+      <PrivateRoute path="/admin" component={Admin} redirectPath="/signin" />
       
       <Route exact path="/" component={Home} />
       <Route path="/movie/:id" component={Detail} />

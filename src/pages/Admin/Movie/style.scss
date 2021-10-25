@@ -60,7 +60,7 @@
                 background-color: #151f30;
                 border: none;
                 width: 100%;
-                
+
                 .ant-input {
                     font-size: 14px;
                     color: #fff;
@@ -69,6 +69,110 @@
             }
 
             .ant-input-group-addon {
+                display: none;
+            }
+        }
+
+        &__add {
+            border-radius: 16px;
+            color: #fff;
+            background: #1890ff;
+            border: 1px solid #1890ff;
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: 15px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 40px;
+            width: 150px;
+            transition: all .3s;
+
+            &:hover {
+                background-color: inherit;
+                color: #fff;
+                border: 1px solid #fff;
+            }
+        }
+
+        &__content {
+            transform: translate3d(0, 0, 0);
+
+            table {
+                width: 100%;
+
+                thead {
+                    border-bottom: 20px solid #131720;
+
+                    th {
+                        font-size: 12px;
+                        color: #e0e0e0;
+                        font-weight: 400;
+                        padding: 0 20px 0 20px;
+                        line-height: 100%;
+                        margin-bottom: 0;
+                        border: none;
+                        text-transform: uppercase;
+                    }
+                }
+            }
+        }
+
+        &__pagination {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            margin: 20px auto 30px;
+            width: 100%;
+            height: 50px;
+            border-radius: 16px;
+            background-color: #151f30;
+
+            .ant-pagination-item-link {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                width: 30px;
+                height: 30px;
+                border-radius: 12px;
+                background-color: #131720;
+                font-size: 14px;
+                color: #e0e0e0;
+                font-weight: 500;
+                border: none;
+
+                &:hover {
+                    color: #1890ff;
+                }
+            }
+
+            .ant-pagination-item {
+                width: 30px;
+                height: 30px;
+                border-radius: 12px;
+                background-color: #131720;
+                font-size: 14px;
+                font-weight: 500;
+                border: none;
+
+                a {
+                    color: #e0e0e0;
+                }
+
+                &:hover a {
+                    color: #1890ff;
+                }
+            }
+
+            .ant-pagination-item-active a {
+                color: #1890ff;
+            }
+
+            .ant-pagination-disabled,
+            .ant-pagination-disabled {
                 display: none;
             }
         }
@@ -107,6 +211,11 @@
                 width: auto;
                 margin-top: 0;
             }
+        }
+
+        .admin--movie__add {
+            margin-right: 60px;
+            // margin-top: 5px;
         }
     }
 }

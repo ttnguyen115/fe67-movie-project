@@ -1,10 +1,10 @@
 import axiosClient from '.';
 
 const movieDashboardApi = {
-    getMovies: (tenPhim) => {
-        const url = '/QuanLyPhim/LayDanhSachPhim';
+    getMovies: ({ tenPhim, soTrang, soPhanTuTrenTrang}) => {
+        const url = '/QuanLyPhim/LayDanhSachPhimPhanTrang';
         return axiosClient.get(url, {
-            params: { tenPhim }
+            params: { tenPhim, soTrang }
         });
     },
 }
