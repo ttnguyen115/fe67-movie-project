@@ -1,7 +1,8 @@
 import { SearchOutlined } from "@mui/icons-material";
-import { Input, Pagination } from "antd";
+import { Button, Input, Pagination } from "antd";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { getAdminMovieList } from "../../../store/actions/Admin/movie";
 import MovieItem from "./MovieItem";
 import "./style.scss";
@@ -33,6 +34,10 @@ const AdminMovie = () => {
                         {movieList.totalCount} total
                     </span>
                     <div className="admin--movie__title--wrap">
+                        <Button className="admin--movie__add" type="button">
+                            <Link to="/admin/films/addnew">Add New</Link>
+                        </Button>
+                        
                         <Input.Search
                             placeholder="Find Movie..."
                             onSearch={onSearch}
