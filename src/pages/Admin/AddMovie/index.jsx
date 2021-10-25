@@ -1,9 +1,25 @@
 import { InboxOutlined } from "@ant-design/icons";
-import { Form, Upload, Row, Col, Input, DatePicker, InputNumber } from "antd";
+import {
+    Form,
+    Upload,
+    Row,
+    Col,
+    Input,
+    DatePicker,
+    InputNumber,
+    Select,
+    Switch,
+    Button,
+} from "antd";
 import React from "react";
+import { addNewRules } from "../../../constants/formRules";
 import "./style.scss";
 
 const AddMovie = () => {
+    const [status, setStatus] = React.useState({
+        SapChieu: false,
+        DangChieu: false,
+    });
     const normFile = (e) => {
         console.log("Upload event:", e);
 
@@ -17,13 +33,31 @@ const AddMovie = () => {
     const onFinish = (values) => {
         const dataValues = {
             ...values,
-            "date-picker": values["ngayKhoiChieu"].format("DD/MM/YYYY"),
+            ngayKhoiChieu: values["ngayKhoiChieu"].format("DD/MM/YYYY"),
+            SapChieu: status.SapChieu,
+            DangChieu: status.DangChieu,
         };
         console.log("Success:", dataValues);
     };
 
     const onFinishFailed = (errorInfo) => {
         console.log("Failed:", errorInfo);
+    };
+
+    const handleSelectStatus = (value) => {
+        switch (value) {
+            case "SapChieu":
+                setStatus({ ...status, SapChieu: true });
+                break;
+
+            case "DangChieu":
+                setStatus({ ...status, DangChieu: true });
+                break;
+
+            default:
+                setStatus({ SapChieu: false, DangChieu: false });
+                break;
+        }
     };
 
     return (
@@ -42,7 +76,7 @@ const AddMovie = () => {
                     <Row>
                         <Col span={24}>
                             <Row>
-                                <Col span={24}>
+                                <Col span={24} md={10} className="dragger--cover">
                                     <Form.Item
                                         name="hinhAnh"
                                         valuePropName="fileList"
@@ -68,20 +102,14 @@ const AddMovie = () => {
                                     </Form.Item>
                                 </Col>
 
-                                <Col span={24}>
+                                <Col span={24} md={14} className="content--cover">
                                     <Row>
                                         <Col span={24}>
                                             <Form.Item
                                                 className="form--group"
                                                 name="tenPhim"
                                                 label="Title"
-                                                rules={[
-                                                    {
-                                                        required: true,
-                                                        message:
-                                                            "Movie title is required",
-                                                    },
-                                                ]}
+                                                rules={addNewRules.tenPhim}
                                             >
                                                 <Input placeholder="Title" />
                                             </Form.Item>
@@ -91,30 +119,19 @@ const AddMovie = () => {
                                                 className="form--group"
                                                 name="moTa"
                                                 label="Description"
-                                                rules={[
-                                                    {
-                                                        required: true,
-                                                        message:
-                                                            "Description is required",
-                                                    },
-                                                ]}
+                                                rules={addNewRules.moTa}
                                             >
                                                 <Input.TextArea placeholder="Description" />
                                             </Form.Item>
                                         </Col>
-                                        <Col span={24}>
+                                        <Col span={24} lg={8} className="input--first">
                                             <Form.Item
                                                 className="form--group"
                                                 name="ngayKhoiChieu"
                                                 label="DatePicker"
-                                                rules={[
-                                                    {
-                                                        type: "object",
-                                                        required: true,
-                                                        message:
-                                                            "Please select time!",
-                                                    },
-                                                ]}
+                                                rules={
+                                                    addNewRules.ngayKhoiChieu
+                                                }
                                             >
                                                 <DatePicker
                                                     placeholder="Release Date"
@@ -122,23 +139,87 @@ const AddMovie = () => {
                                                 />
                                             </Form.Item>
                                         </Col>
-                                        <Col span={24}>
+                                        <Col span={24} lg={8} className="input--second">
                                             <Form.Item
                                                 className="form--group"
                                                 name="danhGia"
                                                 label="Rating"
-                                                rules={[
-                                                    {
-                                                        min: 0,
-                                                        max: 10,
-                                                        message: "Rating must be between 0 and 10"
-                                                    },
-                                                ]}
                                             >
-                                                <Input placeholder="Rating" />
+                                                <InputNumber
+                                                    min={0}
+                                                    max={10}
+                                                    placeholder="Rating"
+                                                    controls={false}
+                                                    step={0.1}
+                                                    onStep={false}
+                                                />
+                                            </Form.Item>
+                                        </Col>
+                                        <Col span={24} lg={8} className="input--last">
+                                            <Form.Item
+                                                label="Status"
+                                                className="form--group"
+                                                name="trangThai"
+                                            >
+                                                <Select
+                                                    placeholder="Status"
+                                                    onSelect={
+                                                        handleSelectStatus
+                                                    }
+                                                    dropdownStyle={{
+                                                        borderRadius: 16,
+                                                        background: "#131720",
+                                                    }}
+                                                >
+                                                    <Select.Option
+                                                        value="SapChieu"
+                                                        className="select--item"
+                                                    >
+                                                        Coming Soon
+                                                    </Select.Option>
+                                                    <Select.Option
+                                                        value="DangChieu"
+                                                        className="select--item"
+                                                    >
+                                                        Showing Now
+                                                    </Select.Option>
+                                                </Select>
+                                            </Form.Item>
+                                        </Col>
+                                        <Col span={24}>
+                                            <Form.Item
+                                                label="Hot"
+                                                valuePropName="Hot"
+                                                className="form--group"
+                                            >
+                                                <span className="mr-4 text-white">
+                                                    Hot
+                                                </span>
+                                                <Switch checked />
+                                            </Form.Item>
+                                        </Col>
+                                        <Col span={24}>
+                                            <Form.Item
+                                                className="form--group"
+                                                name="trailer"
+                                                label="Trailer"
+                                                rules={addNewRules.trailer}
+                                            >
+                                                <Input placeholder="Trailer" />
                                             </Form.Item>
                                         </Col>
                                     </Row>
+                                </Col>
+
+                                <Col span={24} className="submit--cover">
+                                    <Form.Item>
+                                        <Button
+                                            type="primary"
+                                            htmlType="submit"
+                                        >
+                                            Submit
+                                        </Button>
+                                    </Form.Item>
                                 </Col>
                             </Row>
                         </Col>

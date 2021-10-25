@@ -8,8 +8,7 @@ import AdminMovie from "./Movie";
 import AdminUser from "./User";
 
 const Admin = () => {
-    const { url, path } = useRouteMatch();
-    console.log(url, path);
+    const { path } = useRouteMatch();
 
     return (
         <AdminWrapper>
