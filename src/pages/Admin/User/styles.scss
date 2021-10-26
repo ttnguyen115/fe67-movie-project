@@ -1,0 +1,22 @@
+.admin_users {
+  .editable-row .ant-form-item-explain {
+    position: absolute;
+    top: 100%;
+    font-size: 12px;
+    width: 100%;
+  }
+
+  .ant-table {
+    margin-top: 100px !important;
+    background-color: #151f30;
+  }
+
+  .ant-table table {
+    color: #fff;
+    width: 80% !important;
+    margin-left: 300px;
+    .ant-table-row:hover {
+      color: #151f30;
+    }
+  }
+}

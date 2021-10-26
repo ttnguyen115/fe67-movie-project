@@ -34,16 +34,12 @@ export const movieApi = {
   },
 
   postBookTicket: (bookTicket, token) => {
-    console.log(bookTicket)
     const url = "/QuanLyDatVe/DatVe";
-    return axiosClient.post(
-      url, bookTicket,
-      {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      }
-    );
+    return axiosClient.post(url, bookTicket, {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    });
   },
 
   getMoviesByCinema: () => {
