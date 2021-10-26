@@ -1,25 +1,24 @@
 import React from "react";
+import { Route, Switch, useRouteMatch } from "react-router";
+import NotFound from "../NotFound";
+import AddMovie from "./AddMovie";
 import AdminHeader from "./AdminHeader";
+import AdminSidebar from "./AdminSidebar";
 import AdminMovie from "./Movie";
 import AdminUser from "./User";
-import { useParams, useHistory } from "react-router";
-import AdminSidebar from "./AdminSidebar";
 
 const Admin = () => {
-    const { id } = useParams();
-    const history = useHistory();
-
-    const handleRedirect = () => history.push("/*");
+    const { url, path } = useRouteMatch();
+    console.log(url, path);
 
     return (
         <AdminWrapper>
-            {id === "films" ? (
-                <AdminMovie />
-            ) : id === "users" ? (
-                <AdminUser />
-            ) : (
-                handleRedirect
-            )}
+            <Switch>
+                <Route path={`${path}/films/addnew`} component={AddMovie} exact />
+                <Route path={`${path}/films`} component={AdminMovie} exact />
+                <Route path={`${path}/users`} component={AdminUser} exact />
+                <Route path="*" component={NotFound} />
+            </Switch>
         </AdminWrapper>
     );
 };
