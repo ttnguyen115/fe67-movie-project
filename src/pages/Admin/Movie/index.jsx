@@ -3,7 +3,9 @@ import { Button, Input, Pagination } from "antd";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { createAction } from "../../../store/actions";
 import { getAdminMovieList } from "../../../store/actions/Admin/movie";
+import { adminTypes } from "../../../store/actions/type";
 import MovieItem from "./MovieItem";
 import "./style.scss";
 
@@ -15,6 +17,9 @@ const AdminMovie = () => {
 
     const onSearch = (value) => setMovieName(!!value ? value : null);
     const handleChangePage = (page) => setPage(page);
+    const handleAddnewClick = () => {
+        dispatch(createAction(adminTypes.CLEAR_FORM));
+    }
 
     React.useEffect(() => {
         dispatch(
@@ -34,7 +39,7 @@ const AdminMovie = () => {
                         {movieList.totalCount} total
                     </span>
                     <div className="admin--movie__title--wrap">
-                        <Button className="admin--movie__add" type="button">
+                        <Button className="admin--movie__add" type="button" onClick={handleAddnewClick}>
                             <Link to="/admin/films/addnew">Add New</Link>
                         </Button>
                         

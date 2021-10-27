@@ -1,4 +1,4 @@
-import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
+import { PlusOutlined } from "@ant-design/icons";
 import {
     Button,
     Col,
@@ -6,38 +6,58 @@ import {
     Form,
     Input,
     InputNumber,
-    message,
     Row,
     Select,
     Switch,
-    Upload,
+    Upload
 } from "antd";
+import { useForm } from "antd/lib/form/Form";
+import moment from "moment";
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router";
 import { addNewRules } from "../../../constants/formRules";
-import { getBase64 } from "../../../helpers/getBase64";
+import { convertFileToFormData, getBase64 } from "../../../helpers";
+import {
+    addNewMovie,
+    getAdminMovieById
+} from "../../../store/actions/Admin/movie";
 import "./style.scss";
 
-// const beforeUpload = (file) => {
-//     const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
-//     if (!isJpgOrPng) {
-//         message.error("You can only upload JPG/PNG file!");
-//     }
-//     const isLt2M = file.size / 1024 / 1024 < 2;
-//     if (!isLt2M) {
-//         message.error("Image must smaller than 2MB!");
-//     }
-//     return isJpgOrPng && isLt2M;
-// };
-
-const AddMovie = () => {
-    const [loadingImg, setLoadingImg] = React.useState(false);
+const AdminMovieForm = () => {
+    const [form] = useForm();
+    const { id } = useParams();
+    const dispatch = useDispatch();
+    const { editingMovie, loading } = useSelector((state) => state.adminMovie);
     const [previewImage, setPreviewImage] = React.useState("");
     const [fileList, setFileList] = React.useState([]);
-    const [isHot, setisHot] = React.useState(true);
-    const [status, setStatus] = React.useState({
-        SapChieu: false,
-        DangChieu: false,
-    });
+    const [isHot, setIsHot] = React.useState(true);
+    const [isComing, setIsComing] = React.useState(true);
+    const [isShowing, setIsShowing] = React.useState(true);
+
+    React.useEffect(() => {
+        if (id) dispatch(getAdminMovieById(id));
+    }, [id, dispatch]);
+    
+    React.useEffect(() => {
+        if (!!editingMovie) {
+            form.setFieldsValue({
+                'tenPhim': editingMovie?.tenPhim,
+                'moTa': editingMovie?.moTa,
+                'trailer': editingMovie?.trailer,
+                'hinhAnh': editingMovie?.hinhAnh,
+                'hot': editingMovie?.hot,
+                'dangChieu': editingMovie?.dangChieu,
+                'sapChieu': editingMovie?.sapChieu,
+                'danhGia': editingMovie?.danhGia,
+                'ngayKhoiChieu': moment(editingMovie?.ngayKhoiChieu),
+            });
+        }
+    }, [form, editingMovie]);
+
+    const handleHotSwitch = (value) => setIsHot(value);
+    const handleComingSwitch = (value) => setIsComing(value);
+    const handleShowingSwitch = (value) => setIsShowing(value);
 
     const normFile = (e) => {
         console.log("Upload event:", e);
@@ -49,60 +69,34 @@ const AddMovie = () => {
         return e && e.fileList;
     };
 
-    const getFormData = (object) => {
-        const formData = new FormData();
-        Object.keys(object).forEach(key => formData.append(`${key}`, `${object[key]}`));
-        return formData;
-    }
-
     const onFinish = (values) => {
-        console.log(values);
         const dataValues = {
             ...values,
             ngayKhoiChieu: values["ngayKhoiChieu"].format("DD/MM/YYYY"),
-            SapChieu: status.SapChieu,
-            DangChieu: status.DangChieu,
             hot: isHot,
             File: fileList[0],
         };
-        console.log(dataValues);
-        
-        console.log("Success:", getFormData(dataValues));
+
+        const formData = convertFileToFormData(dataValues);
+        const formDataArray = [];
+        for (let item of formData) formDataArray.push(item);
+        console.log(formDataArray);
+        dispatch(addNewMovie(formDataArray));
     };
 
     const onFinishFailed = (errorInfo) => {
         console.log("Failed:", errorInfo);
     };
 
-    const handleSelectStatus = (value) => {
-        switch (value) {
-            case "SapChieu":
-                setStatus({ ...status, SapChieu: true });
-                break;
-
-            case "DangChieu":
-                setStatus({ ...status, DangChieu: true });
-                break;
-
-            default:
-                setStatus({ SapChieu: false, DangChieu: false });
-                break;
-        }
-    };
-
-    const handleHotSwitch = (value) => setisHot(value);
-
-    const handleUpload = () => {
-        const formData = new FormData();
-        formData.append("File", fileList[0]);
+    const handleChange = ({ file }) => {
+        getBase64(file, (image) => setPreviewImage(image));
     };
 
     const uploadProps = {
         onRemove: (file) => {
             const index = fileList.indexOf(file);
             const newFileList = fileList.slice();
-            newFileList.splice(index, 1);
-            setFileList(newFileList);
+            setFileList(newFileList.splice(index, 1));
         },
         beforeUpload: (file) => {
             setFileList([...fileList, file]);
@@ -113,19 +107,22 @@ const AddMovie = () => {
 
     const uploadButton = (
         <div>
-            {loadingImg ? <LoadingOutlined /> : <PlusOutlined />}
+            <PlusOutlined />
             <div style={{ marginTop: 8 }}>Upload</div>
         </div>
     );
+
+    if (loading) return <div className="text-white">Loading</div>;
 
     return (
         <div className="add--movie__container">
             <div className="add--movie">
                 <div className="add--movie__title">
-                    <h2>Add New</h2>
+                    <h2>{id ? "Edit" : "Add New"}</h2>
                 </div>
 
                 <Form
+                    form={form}
                     className="add--movie__form"
                     onFinish={onFinish}
                     onFinishFailed={onFinishFailed}
@@ -147,9 +144,24 @@ const AddMovie = () => {
                                     >
                                         <Upload.Dragger
                                             {...uploadProps}
+                                            onChange={handleChange}
                                             name="File"
                                         >
-                                            {uploadButton}
+                                            {previewImage ? (
+                                                <img
+                                                    src={previewImage}
+                                                    alt="avatar"
+                                                    style={{ width: "100%" }}
+                                                />
+                                            ) : editingMovie ? (
+                                                <img
+                                                    src={editingMovie?.hinhAnh}
+                                                    alt="avatar"
+                                                    style={{ width: "100%" }}
+                                                />
+                                            ) : (
+                                                uploadButton
+                                            )}
                                         </Upload.Dragger>
                                     </Form.Item>
                                 </Col>
@@ -182,7 +194,7 @@ const AddMovie = () => {
                                         </Col>
                                         <Col
                                             span={24}
-                                            lg={8}
+                                            lg={12}
                                             className="input--first"
                                         >
                                             <Form.Item
@@ -201,7 +213,7 @@ const AddMovie = () => {
                                         </Col>
                                         <Col
                                             span={24}
-                                            lg={8}
+                                            lg={12}
                                             className="input--second"
                                         >
                                             <Form.Item
@@ -219,42 +231,37 @@ const AddMovie = () => {
                                                 />
                                             </Form.Item>
                                         </Col>
-                                        <Col
-                                            span={24}
-                                            lg={8}
-                                            className="input--last"
-                                        >
+                                        <Col span={24} lg={8}>
                                             <Form.Item
-                                                label="Status"
+                                                label="SapChieu"
+                                                valuePropName="sapChieu"
                                                 className="form--group"
-                                                name="trangThai"
                                             >
-                                                <Select
-                                                    placeholder="Status"
-                                                    onSelect={
-                                                        handleSelectStatus
-                                                    }
-                                                    dropdownStyle={{
-                                                        borderRadius: 16,
-                                                        background: "#131720",
-                                                    }}
-                                                >
-                                                    <Select.Option
-                                                        value="SapChieu"
-                                                        className="select--item"
-                                                    >
-                                                        Coming Soon
-                                                    </Select.Option>
-                                                    <Select.Option
-                                                        value="DangChieu"
-                                                        className="select--item"
-                                                    >
-                                                        Showing Now
-                                                    </Select.Option>
-                                                </Select>
+                                                <span className="mr-4 text-white">
+                                                    Coming Soon
+                                                </span>
+                                                <Switch
+                                                    defaultChecked
+                                                    onChange={handleComingSwitch}
+                                                />
                                             </Form.Item>
                                         </Col>
-                                        <Col span={24}>
+                                        <Col span={24} lg={8}>
+                                            <Form.Item
+                                                label="dangChieu"
+                                                valuePropName="dangChieu"
+                                                className="form--group"
+                                            >
+                                                <span className="mr-4 text-white">
+                                                    Showing Now
+                                                </span>
+                                                <Switch
+                                                    defaultChecked
+                                                    onChange={handleShowingSwitch}
+                                                />
+                                            </Form.Item>
+                                        </Col>
+                                        <Col span={24} lg={8}>
                                             <Form.Item
                                                 label="Hot"
                                                 valuePropName="Hot"
@@ -287,9 +294,8 @@ const AddMovie = () => {
                                         <Button
                                             type="primary"
                                             htmlType="submit"
-                                            onClick={handleUpload}
                                         >
-                                            Submit
+                                            {editingMovie ? 'Update' : 'Add'}
                                         </Button>
                                     </Form.Item>
                                 </Col>
@@ -302,4 +308,4 @@ const AddMovie = () => {
     );
 };
 
-export default AddMovie;
+export default AdminMovieForm;
