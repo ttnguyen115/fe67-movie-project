@@ -1,4 +1,4 @@
-export const formRules = {
+const formRules = {
     usernameRules: [
         {
             required: true,
@@ -53,4 +53,44 @@ export const formRules = {
             message: "Please input full name!"
         }
     ]
+}
+
+const addNewRules = {
+    tenPhim: [
+        {
+            required: true,
+            message:
+                "Movie title is required",
+        },
+    ],
+    moTa: [
+        {
+            required: true,
+            message:
+                "Description is required",
+        },
+    ],
+    ngayKhoiChieu: [
+        {
+            type: "object",
+            required: true,
+            message:
+                "Please select time!",
+        },
+    ],
+    trailer: [
+        {
+            required: true,
+            message: 'Trailer URL is required'
+        },
+        {
+            pattern: /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
+            message: 'Trailer URL must start with HTTP/HTTPS'
+        }
+    ]
+}
+
+export {
+    formRules,
+    addNewRules
 }
