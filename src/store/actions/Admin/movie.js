@@ -44,3 +44,15 @@ export const editMovie = formData => async dispatch => {
         dispatch(createAction(adminTypes.ADMIN_EDIT_MOVIE_FAILURE, err?.response?.data.message));
     }
 }
+
+export const deleteMovie = movieId => async dispatch => {
+    try {
+        dispatch(createAction(adminTypes.ADMIN_DELETE_MOVIE_REQUEST));
+        const { data } = await movieDashboardApi.deleteMovie(movieId);
+        dispatch(createAction(adminTypes.ADMIN_DELETE_MOVIE_SUCCESS, data.content));
+        console.log(data.content)
+        dispatch(getAdminMovieList({ tenPhim: null, soTrang: 1 }));
+    } catch (err) {
+        dispatch(createAction(adminTypes.ADMIN_DELETE_MOVIE_FAILURE, err?.response?.data.message));
+    }
+}

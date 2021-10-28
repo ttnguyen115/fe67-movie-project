@@ -5,6 +5,7 @@ const adminMovieInitialState = {
     error: null,
     movieList: [],
     editingMovie: null,
+    notify: '',
 }
 
 const adminMovieReducer = (state = adminMovieInitialState, { type, payload }) => {
@@ -67,7 +68,7 @@ const adminMovieReducer = (state = adminMovieInitialState, { type, payload }) =>
         case adminTypes.ADMIN_DELETE_MOVIE_BY_ID_SUCCESS:
             state.loading = false;
             state.error = null;
-            state.movieList = payload;
+            state.notify = payload;
             return { ...state };
         case adminTypes.ADMIN_DELETE_MOVIE_BY_ID_FAILURE:
             state.loading = false;

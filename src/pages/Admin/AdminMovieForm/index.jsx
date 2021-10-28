@@ -19,6 +19,7 @@ import { addNewRules } from "../../../constants/formRules";
 import { getBase64 } from "../../../helpers";
 import {
     addNewMovie,
+    editMovie,
     getAdminMovieById,
 } from "../../../store/actions/Admin/movie";
 import "./style.scss";
@@ -93,8 +94,13 @@ const AdminMovieForm = () => {
         formData.append("trailer", dataValues["trailer"]);
         formData.append("File", blob);
         
-        const handleRedirectAfterSuccess = () => history.push("/admin/films")
-        dispatch(addNewMovie(formData, handleRedirectAfterSuccess));
+        const handleRedirectAfterSuccess = () => history.push("/admin/films");
+
+        if (editingMovie) {
+            console.log(dataValues)
+            dispatch(editMovie(formData, handleRedirectAfterSuccess));
+        }
+        else dispatch(addNewMovie(formData, handleRedirectAfterSuccess));
     };
 
     const onFinishFailed = (errorInfo) => {
