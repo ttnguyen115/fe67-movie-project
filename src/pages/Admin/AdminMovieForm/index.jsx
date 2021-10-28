@@ -7,27 +7,28 @@ import {
     Input,
     InputNumber,
     Row,
-    Select,
     Switch,
-    Upload
+    Upload,
 } from "antd";
 import { useForm } from "antd/lib/form/Form";
 import moment from "moment";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import { addNewRules } from "../../../constants/formRules";
-import { convertFileToFormData, getBase64 } from "../../../helpers";
+import { getBase64 } from "../../../helpers";
 import {
     addNewMovie,
-    getAdminMovieById
+    getAdminMovieById,
 } from "../../../store/actions/Admin/movie";
 import "./style.scss";
 
 const AdminMovieForm = () => {
+    const history = useHistory();
     const [form] = useForm();
     const { id } = useParams();
     const dispatch = useDispatch();
+    const imageRef = React.useRef(null);
     const { editingMovie, loading } = useSelector((state) => state.adminMovie);
     const [previewImage, setPreviewImage] = React.useState("");
     const [fileList, setFileList] = React.useState([]);
@@ -38,19 +39,19 @@ const AdminMovieForm = () => {
     React.useEffect(() => {
         if (id) dispatch(getAdminMovieById(id));
     }, [id, dispatch]);
-    
+
     React.useEffect(() => {
         if (!!editingMovie) {
             form.setFieldsValue({
-                'tenPhim': editingMovie?.tenPhim,
-                'moTa': editingMovie?.moTa,
-                'trailer': editingMovie?.trailer,
-                'hinhAnh': editingMovie?.hinhAnh,
-                'hot': editingMovie?.hot,
-                'dangChieu': editingMovie?.dangChieu,
-                'sapChieu': editingMovie?.sapChieu,
-                'danhGia': editingMovie?.danhGia,
-                'ngayKhoiChieu': moment(editingMovie?.ngayKhoiChieu),
+                tenPhim: editingMovie?.tenPhim,
+                moTa: editingMovie?.moTa,
+                trailer: editingMovie?.trailer,
+                hinhAnh: editingMovie?.hinhAnh,
+                hot: editingMovie?.hot,
+                dangChieu: editingMovie?.dangChieu,
+                sapChieu: editingMovie?.sapChieu,
+                danhGia: editingMovie?.danhGia,
+                ngayKhoiChieu: moment(editingMovie?.ngayKhoiChieu),
             });
         }
     }, [form, editingMovie]);
@@ -75,21 +76,39 @@ const AdminMovieForm = () => {
             ngayKhoiChieu: values["ngayKhoiChieu"].format("DD/MM/YYYY"),
             hot: isHot,
             File: fileList[0],
+            sapChieu: isComing,
+            dangChieu: isShowing,
         };
 
-        const formData = convertFileToFormData(dataValues);
-        const formDataArray = [];
-        for (let item of formData) formDataArray.push(item);
-        console.log(formDataArray);
-        dispatch(addNewMovie(formDataArray));
+        const blob = new Blob([previewImage], { type: values.File[0].type });
+        const formData = new FormData();
+        formData.append("maPhim", dataValues["maPhim"]);
+        formData.append("tenPhim", dataValues["tenPhim"]);
+        formData.append("moTa", dataValues["moTa"]);
+        formData.append("ngayKhoiChieu", dataValues["ngayKhoiChieu"]);
+        formData.append("sapChieu", dataValues["sapChieu"]);
+        formData.append("dangChieu", dataValues["dangChieu"]);
+        formData.append("hot", dataValues["hot"]);
+        formData.append("danhGia", dataValues["danhGia"]);
+        formData.append("trailer", dataValues["trailer"]);
+        formData.append("File", blob);
+        
+        const handleRedirectAfterSuccess = () => history.push("/admin/films")
+        dispatch(addNewMovie(formData, handleRedirectAfterSuccess));
     };
 
     const onFinishFailed = (errorInfo) => {
         console.log("Failed:", errorInfo);
     };
 
-    const handleChange = ({ file }) => {
-        getBase64(file, (image) => setPreviewImage(image));
+    const handleChange = async ({ file }) => {
+        if (!file.type.match(/\/(jpeg|png|jpg|JPEG|PNG|JPG)$/)) {
+            console.log("Incorrect file type. Please upload jpeg, png or jpg.");
+        }
+
+        imageRef.current = URL.createObjectURL(file);
+        const fileUpload = await getBase64(file);
+        setPreviewImage(fileUpload);
     };
 
     const uploadProps = {
@@ -242,7 +261,9 @@ const AdminMovieForm = () => {
                                                 </span>
                                                 <Switch
                                                     defaultChecked
-                                                    onChange={handleComingSwitch}
+                                                    onChange={
+                                                        handleComingSwitch
+                                                    }
                                                 />
                                             </Form.Item>
                                         </Col>
@@ -257,7 +278,9 @@ const AdminMovieForm = () => {
                                                 </span>
                                                 <Switch
                                                     defaultChecked
-                                                    onChange={handleShowingSwitch}
+                                                    onChange={
+                                                        handleShowingSwitch
+                                                    }
                                                 />
                                             </Form.Item>
                                         </Col>
@@ -295,7 +318,7 @@ const AdminMovieForm = () => {
                                             type="primary"
                                             htmlType="submit"
                                         >
-                                            {editingMovie ? 'Update' : 'Add'}
+                                            {editingMovie ? "Update" : "Add"}
                                         </Button>
                                     </Form.Item>
                                 </Col>

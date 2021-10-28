@@ -1,5 +1,7 @@
 import axiosClient from '.';
 
+const token = localStorage.getItem('token');
+
 const movieDashboardApi = {
     getMovies: ({ tenPhim, soTrang }) => {
         const url = '/QuanLyPhim/LayDanhSachPhimPhanTrang';
@@ -24,7 +26,29 @@ const movieDashboardApi = {
                 "Content-Type": "multipart/form-data"
             }
         });
-    }
+    },
+
+    editMovie: formData => {
+        const url = "/QuanLyPhim/CapNhatPhimUpload";
+        return axiosClient.post(url, formData, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+                Authorization: 'Bearer ' + token
+            }
+        })
+    },
+
+    deleteMovie: movieId => {
+        const url = "/QuanLyPhim/XoaPhim";
+        return axiosClient.delete(url, {
+            params: {
+                maPhim: movieId
+            },
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        });
+    },
 }
 
 const userDashboardApi = {}

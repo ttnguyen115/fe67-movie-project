@@ -12,11 +12,12 @@ export const getAdminMovieList = dataValues => async dispatch => {
     }
 }
 
-export const getAdminMovieById = movieId => async dispatch => {
+export const getAdminMovieById = (movieId, callback) => async dispatch => {
     try {
         dispatch(createAction(adminTypes.ADMIN_GET_MOVIE_BY_ID_REQUEST));
         const { data } = await movieDashboardApi.getMovieById(movieId);
         dispatch(createAction(adminTypes.ADMIN_GET_MOVIE_BY_ID_SUCCESS, data.content));
+        callback();
     } catch (err) {
         dispatch(createAction(adminTypes.ADMIN_GET_MOVIE_BY_ID_FAILURE, err?.response?.data.message));
     }
@@ -25,9 +26,21 @@ export const getAdminMovieById = movieId => async dispatch => {
 export const addNewMovie = formData => async dispatch => {
     try {
         dispatch(createAction(adminTypes.ADMIN_ADD_MOVIE_REQUEST));
-        const res = await movieDashboardApi.addMovie(formData);
-        console.log(res);
+        const { data, message } = await movieDashboardApi.addMovie(formData);
+        dispatch(createAction(adminTypes.ADMIN_ADD_MOVIE_SUCCESS, data.content));
+        console.log(message);
     } catch (err) {
         dispatch(createAction(adminTypes.ADMIN_ADD_MOVIE_FAILURE, err?.response?.data.message));
+    }
+}
+
+export const editMovie = formData => async dispatch => {
+    try {
+        dispatch(createAction(adminTypes.ADMIN_EDIT_MOVIE_REQUEST));
+        const { data, message } = await movieDashboardApi.editMovie(formData);
+        dispatch(createAction(adminTypes.ADMIN_EDIT_MOVIE_SUCCESS, data.content));
+        console.log(message);
+    } catch (err) {
+        dispatch(createAction(adminTypes.ADMIN_EDIT_MOVIE_FAILURE, err?.response?.data.message));
     }
 }

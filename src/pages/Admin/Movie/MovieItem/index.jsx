@@ -17,11 +17,7 @@ const MovieItem = ({ movieItem }) => {
             </td>
             <td>
                 <div className="movie--item__img">
-                    <img
-                        src={hinhAnh}
-                        alt="movie--img"
-                        className="w-16 h-16"
-                    />
+                    <img src={hinhAnh} alt="movie--img" className="w-16 h-16" />
                 </div>
             </td>
             <td>
