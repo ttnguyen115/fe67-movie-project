@@ -1,5 +1,5 @@
 import axiosClient from ".";
-import { BookTicket } from "../../src/model/bookTicket";
+
 export const movieApi = {
   getBanners: () => {
     const url = "/QuanLyPhim/LayDanhSachBanner";

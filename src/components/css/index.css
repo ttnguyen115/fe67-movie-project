@@ -1,25 +1,11 @@
-.buttonPlay {
-  position: absolute;
-  left: 48%;
-  bottom: 40%;
+.seat-btn {
   width: 50px;
-  height: 50px;
+  margin: 10px;
+  border-radius: 10px;
   color: #fff;
-  border: 1px solid #fff;
-  border-radius: 50%;
-  background: transparent;
-  transition: all 0.3s linear;
 }
 
-.buttonPlay:hover {
-  border: 1px solid blue;
-  color: blue;
-}
-
-.buttonPlay .btn-play {
-  width: 50px;
-  font-size: 25px;
-  align-items: center;
-  justify-content: center;
+.seat-btn-disabled:hover {
+  cursor: not-allowed;
 }
 /*# sourceMappingURL=index.css.map */

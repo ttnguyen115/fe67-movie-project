@@ -1,110 +1,38 @@
-import React, { useState } from "react";
-import { Table, Input, InputNumber, Popconfirm, Form, Typography } from "antd";
+import React, { Fragment, useEffect, useState } from "react";
+import {
+  Table,
+  Input,
+  InputNumber,
+  Popconfirm,
+  Form,
+  Typography,
+  Button,
+} from "antd";
 import "./styles.scss";
-
-const originData = [];
-
-for (let i = 0; i < 100; i++) {
-  originData.push({
-    key: i.toString(),
-    stt: `${i}`,
-    taiKhoan: `Edrward ${i}`,
-    matKhau: "123132",
-    hoTen: `Edrward ${i}`,
-    email: `Edrward${i}@gmail.com`,
-    soDT: 123132131,
-  });
-}
-
-const EditableCell = ({
-  editing,
-  dataIndex,
-  title,
-  inputType,
-  record,
-  index,
-  children,
-  ...restProps
-}) => {
-  const inputNode = inputType === "number" ? <InputNumber /> : <Input />;
-  return (
-    <td {...restProps}>
-      {editing ? (
-        <Form.Item
-          name={dataIndex}
-          style={{
-            margin: 0,
-          }}
-          rules={[
-            {
-              required: true,
-              message: `Please Input ${title}!`,
-            },
-          ]}
-        >
-          {inputNode}
-        </Form.Item>
-      ) : (
-        children
-      )}
-    </td>
-  );
-};
+import {
+  deleteUserItem,
+  getAdminUserList,
+} from "../../../store/actions/Admin/user";
+import { useDispatch, useSelector } from "react-redux";
+import { EditOutlined, SearchOutlined } from "@mui/icons-material";
+import { DeleteOutlined } from "@material-ui/icons";
+import { Link } from "react-router-dom";
 
 const AdminUser = () => {
   const [form] = Form.useForm();
-  const [data, setData] = useState(originData);
-  //   const [data, setData] = useState();
+  const { userList } = useSelector((state) => state.adminUser);
+  const dispatch = useDispatch();
 
-  const [editingKey, setEditingKey] = useState("");
+  useEffect(() => {
+    dispatch(getAdminUserList({ tukhoa: userList }));
+  }, [dispatch, userList]);
 
-  const isEditing = (record) => record.key === editingKey;
-
-  const edit = (record) => {
-    form.setFieldsValue({
-      stt: "",
-      taiKhoan: "",
-      matKhau: "",
-      hoTen: "",
-      email: "",
-      soDT: "",
-      ...record,
-    });
-    setEditingKey(record.key);
-  };
-
-  const cancel = () => {
-    setEditingKey("");
-  };
-
-  const save = async (key) => {
-    try {
-      const row = await form.validateFields();
-      const newData = [...data];
-      const index = newData.findIndex((item) => key === item.key);
-
-      if (index > -1) {
-        const item = newData[index];
-        newData.splice(index, 1, { ...item, ...row });
-        setData(newData);
-        setEditingKey("");
-      } else {
-        newData.push(row);
-        setData(newData);
-        setEditingKey("");
-      }
-    } catch (errInfo) {
-      console.log("Validate Failed:", errInfo);
-    }
+  const onSearch = (value) => {
+    console.log(value);
+    // dispatch api
   };
 
   const columns = [
-    {
-      title: "STT",
-      dataIndex: "stt",
-      width: "5%",
-      editable: true,
-    },
     {
       title: "Tài Khoản",
       dataIndex: "taiKhoan",
@@ -138,30 +66,33 @@ const AdminUser = () => {
     {
       title: "Thao tác",
       dataIndex: "thaoTac",
-      render: (_, record) => {
-        const editable = isEditing(record);
-        return editable ? (
-          <span>
-            <a
-              href="javascript:;"
-              onClick={() => save(record.key)}
-              style={{
-                marginRight: 8,
-              }}
-            >
-              Save
-            </a>
-            <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
-              <a>Cancel</a>
-            </Popconfirm>
-          </span>
-        ) : (
-          <Typography.Link
-            disabled={editingKey !== ""}
-            onClick={() => edit(record)}
-          >
-            Edit
-          </Typography.Link>
+
+      render: (_, userList) => {
+        return (
+          <Fragment>
+            <div className="admin-user-gr">
+              <Link
+                to={`/admin/users/${userList.taiKhoan}`}
+                className="admin-user-btn admin-user-btn-edit"
+                type="button"
+              >
+                <EditOutlined />
+              </Link>
+
+              <Button
+                onClick={() => {
+                  const token = localStorage.getItem("token");
+                  dispatch(
+                    deleteUserItem({ taiKhoan: userList.taiKhoan, token })
+                  );
+                }}
+                className="admin-user-btn admin-user-btn-delete"
+                type="button"
+              >
+                <DeleteOutlined />
+              </Button>
+            </div>
+          </Fragment>
         );
       },
     },
@@ -176,32 +107,35 @@ const AdminUser = () => {
       ...col,
       onCell: (record) => ({
         record,
-        inputType: col.dataIndex === "age" ? "number" : "text",
-        dataIndex: col.dataIndex,
+        // inputType: col.dataIndex === "age" ? "number" : "text",
+        // dataIndex: col.dataIndex,
         title: col.title,
-        editing: isEditing(record),
       }),
     };
   });
 
   return (
-    <Form form={form} component={false}>
-      <Table
-        className="admin_users"
-        components={{
-          body: {
-            cell: EditableCell,
-          },
-        }}
-        bordered
-        dataSource={data}
-        columns={mergedColumns}
-        rowClassName="editable-row"
-        pagination={{
-          onChange: cancel,
-        }}
-      />
-    </Form>
+    <div className="admin-users ">
+      <div className="admin-user">
+        <Input.Search
+          onSearch={onSearch}
+          placeholder="Find user..."
+          enterButton
+          className="admin--user__search"
+          suffix={<SearchOutlined style={{ color: "#2f80ed", fontSize: 18 }} />}
+        />
+      </div>
+
+      <Form form={form} component={false}>
+        <Table
+          className="admin_users"
+          bordered
+          dataSource={userList}
+          columns={mergedColumns}
+          rowClassName="editable-row"
+        />
+      </Form>
+    </div>
   );
 };
 
