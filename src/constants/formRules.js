@@ -90,7 +90,15 @@ const addNewRules = {
     ]
 }
 
+const showtimeRules = {
+    heThongRap: [],
+    cumRap: [],
+    ngayChieuGioChieu: [],
+    giaVe: [],
+}
+
 export {
     formRules,
-    addNewRules
+    addNewRules,
+    showtimeRules
 }

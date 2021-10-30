@@ -231,6 +231,7 @@ const AdminMovieForm = () => {
                                                 }
                                             >
                                                 <DatePicker
+                                                    allowClear={false}
                                                     placeholder="Release Date"
                                                     className="w-full"
                                                 />
