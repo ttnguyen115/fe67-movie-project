@@ -60,6 +60,27 @@ const userDashboardApi = {
       },
     });
   },
+
+  addUser: (taiKhoan) => {
+    const url = "/QuanLyNguoiDung/ThemNguoiDung";
+    return axiosClient.post(url, taiKhoan, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: "Bearer " + token,
+      },
+    });
+  },
+
+  editUser: (taiKhoan) => {
+    const url = "/QuanLyNguoiDung/CapNhatThongTinNguoiDung";
+    return axiosClient.post(url, taiKhoan, {
+      headers: {
+        // "Content-Type": "multipart/form-data",
+        Authorization: "Bearer " + token,
+      },
+    });
+  },
+
   deleteUser: ({ taiKhoan, token }) => {
     const url = "/QuanLyNguoiDung/XoaNguoiDung";
     return axiosClient.delete(url, {

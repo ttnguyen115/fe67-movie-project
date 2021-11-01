@@ -1,13 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-import {
-  Table,
-  Input,
-  InputNumber,
-  Popconfirm,
-  Form,
-  Typography,
-  Button,
-} from "antd";
+import { Table, Input, Form, Button } from "antd";
 import "./styles.scss";
 import {
   deleteUserItem,
@@ -16,21 +8,26 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { EditOutlined, SearchOutlined } from "@mui/icons-material";
 import { DeleteOutlined } from "@material-ui/icons";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { useParams } from "react-router";
 
 const AdminUser = () => {
   const [form] = Form.useForm();
-  const { userList } = useSelector((state) => state.adminUser);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getAdminUserList({ tukhoa: userList }));
-  }, [dispatch, userList]);
+  const { userList } = useSelector((state) => state.adminUser);
+  const [userSearch, setUserSearch] = useState("");
+  const { id } = useParams();
 
+  // chua search duoc
   const onSearch = (value) => {
+    setUserSearch(!!value ? value : "");
     console.log(value);
-    // dispatch api
   };
+
+  useEffect(() => {
+    dispatch(getAdminUserList({ tukhoa: userSearch }));
+  }, [dispatch, userSearch]);
 
   const columns = [
     {
@@ -67,12 +64,12 @@ const AdminUser = () => {
       title: "Thao tác",
       dataIndex: "thaoTac",
 
-      render: (_, userList) => {
+      render: (_, userList, taiKhoan) => {
         return (
           <Fragment>
             <div className="admin-user-gr">
               <Link
-                to={`/admin/users/${userList.taiKhoan}`}
+                to={`/admin/users/edit/${userList.taiKhoan}`}
                 className="admin-user-btn admin-user-btn-edit"
                 type="button"
               >
@@ -82,9 +79,12 @@ const AdminUser = () => {
               <Button
                 onClick={() => {
                   const token = localStorage.getItem("token");
+
+                  window.confirm("Are you sure delete this?");
                   dispatch(
                     deleteUserItem({ taiKhoan: userList.taiKhoan, token })
                   );
+                  dispatch(getAdminUserList({ tukhoa: id }));
                 }}
                 className="admin-user-btn admin-user-btn-delete"
                 type="button"
@@ -116,10 +116,16 @@ const AdminUser = () => {
 
   return (
     <div className="admin-users ">
+      <NavLink to={`/admin/users/addnew`} className="admin-users-add">
+        <Button type="primary" shape="round">
+          ADD NEW
+        </Button>
+      </NavLink>
+
       <div className="admin-user">
         <Input.Search
-          onSearch={onSearch}
           placeholder="Find user..."
+          onSearch={onSearch}
           enterButton
           className="admin--user__search"
           suffix={<SearchOutlined style={{ color: "#2f80ed", fontSize: 18 }} />}
@@ -130,9 +136,9 @@ const AdminUser = () => {
         <Table
           className="admin_users"
           bordered
+          value={userSearch}
           dataSource={userList}
           columns={mergedColumns}
-          rowClassName="editable-row"
         />
       </Form>
     </div>
