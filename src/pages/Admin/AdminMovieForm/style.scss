@@ -53,6 +53,10 @@
                 border-radius: 16px;
                 padding: 0 10px;
                 border: none;
+
+                svg {
+                    fill: #fff;
+                }
             }
 
             .ant-upload-text {
@@ -91,6 +95,8 @@
                 padding: 0 20px;
             }
 
+            &.ant-form-item-has-error .ant-input-number,
+            &.ant-form-item-has-error .ant-picker,
             &.ant-form-item-has-error :not(.ant-input-disabled):not(.ant-input-borderless).ant-input,
             &.ant-form-item-has-error
                 :not(.ant-input-affix-wrapper-disabled):not(.ant-input-affix-wrapper-borderless).ant-input-affix-wrapper,

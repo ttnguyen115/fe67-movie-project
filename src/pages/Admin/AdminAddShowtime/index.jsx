@@ -180,7 +180,8 @@ const AdminAddShowtime = () => {
                                                 rules={showtimeRules.giaVe}
                                             >
                                                 <InputNumber
-                                                    min={1000}
+                                                    min={50000}
+                                                    max={200000}
                                                     placeholder="Price"
                                                     controls={false}
                                                     step={1000}

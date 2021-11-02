@@ -91,10 +91,38 @@ const addNewRules = {
 }
 
 const showtimeRules = {
-    heThongRap: [],
-    cumRap: [],
-    ngayChieuGioChieu: [],
-    giaVe: [],
+    heThongRap: [
+        {
+            required: true,
+            message: 'Theater system field is required'
+        }
+    ],
+    cumRap: [
+        {
+            required: true,
+            message: 'Theater center field is required'
+        }
+    ],
+    ngayChieuGioChieu: [
+        {
+            required: true,
+            message: 'Showtime field is required'
+        }
+    ],
+    giaVe: [
+        {
+            required: true,
+            message: 'Price field is required'
+        },
+        // {
+        //     min: 50000,
+        //     message: 'The lowest price is 50.000 VND'
+        // },
+        // {
+        //     max: 200000,
+        //     message: 'The highest price is 200.000 VND'
+        // },
+    ],
 }
 
 export {

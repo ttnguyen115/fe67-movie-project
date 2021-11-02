@@ -14,8 +14,6 @@ const AdminSidebar = () => {
     const { loading, currentUser } = useSelector((state) => state.user);
 
     const handleMenuChange = e => history.push(`/admin/${e.key}`)
-
-    if (loading) return <LoadingSpin />;
     
     return (
         <div
@@ -42,7 +40,7 @@ const AdminSidebar = () => {
 
                 <div className="admin--sidebar__user--title">
                     <span>Admin</span>
-                    <p>{currentUser?.taiKhoan}</p>
+                    <p>{loading ? 'Loading...' : currentUser?.taiKhoan}</p>
                 </div>
 
                 <button className="admin--sidebar__user--btn" type="button">

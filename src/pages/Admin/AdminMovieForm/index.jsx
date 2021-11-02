@@ -82,6 +82,7 @@ const AdminMovieForm = () => {
         };
 
         const blob = new Blob([previewImage], { type: values.File[0].type });
+        console.log(blob);
         const formData = new FormData();
         formData.append("maPhim", dataValues["maPhim"]);
         formData.append("tenPhim", dataValues["tenPhim"]);
@@ -92,7 +93,7 @@ const AdminMovieForm = () => {
         formData.append("hot", dataValues["hot"]);
         formData.append("danhGia", dataValues["danhGia"]);
         formData.append("trailer", dataValues["trailer"]);
-        formData.append("File", blob);
+        formData.append("File", blob, values.File[0].name);
         
         const handleRedirectAfterSuccess = () => history.push("/admin/films");
 
@@ -133,7 +134,7 @@ const AdminMovieForm = () => {
     const uploadButton = (
         <div>
             <PlusOutlined />
-            <div style={{ marginTop: 8 }}>Upload</div>
+            <div className="mt-2 text-gray-100">Upload</div>
         </div>
     );
 
