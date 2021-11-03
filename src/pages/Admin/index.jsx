@@ -6,6 +6,7 @@ import AdminHeader from "./AdminHeader";
 import AdminSidebar from "./AdminSidebar";
 import AdminMovie from "./Movie";
 import AdminUser from "./User";
+import AdminAddShowtime from "./AdminAddShowtime";
 
 const Admin = () => {
     const { path } = useRouteMatch();
@@ -15,6 +16,7 @@ const Admin = () => {
             <Switch>
                 <Route path={`${path}/films/addnew`} component={AddMovie} exact />
                 <Route path={`${path}/films/edit/:id`} component={AddMovie} exact />
+                <Route path={`${path}/films/showtime/:id`} component={AdminAddShowtime} exact />
                 <Route path={`${path}/films`} component={AdminMovie} exact />
                 <Route path={`${path}/users`} component={AdminUser} exact />
                 <Route path="*" component={NotFound} />

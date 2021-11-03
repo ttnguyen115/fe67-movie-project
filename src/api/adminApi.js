@@ -49,6 +49,29 @@ const movieDashboardApi = {
             }
         });
     },
+
+    getTheaterList: () => {
+        const url = '/QuanLyRap/LayThongTinHeThongRap';
+        return axiosClient.get(url);
+    },
+
+    getTheaterById: theaterName => {
+        const url = '/QuanLyRap/LayThongTinCumRapTheoHeThong';
+        return axiosClient.get(url, {
+            params: {
+                maHeThongRap: theaterName
+            }
+        })
+    },
+
+    addShowtime: dataValues => {
+        const url = '/QuanLyDatVe/TaoLichChieu';
+        return axiosClient.post(url, dataValues, {
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        })
+    }
 }
 
 const userDashboardApi = {}
