@@ -52,13 +52,27 @@ const movieDashboardApi = {
 };
 
 const userDashboardApi = {
-  getUser: ({ tuKhoa, token }) => {
+  getUser: ({ tuKhoa }) => {
     const url = "/QuanLyNguoiDung/LayDanhSachNguoiDung";
-    return axiosClient.get(url, tuKhoa, {
+    return axiosClient.get(url, {
+      params: {
+        tuKhoa
+      },
       headers: {
         Authorization: "Bearer " + token,
       },
     });
+  },
+
+  getUserById: (taiKhoan) => {
+    const url = `/QuanLyNguoiDung/LayThongTinNguoiDung?taiKhoan=${taiKhoan}`;
+    // const url = "/QuanLyNguoiDung/ThongTinTaiKhoan";
+    return axiosClient.post(url, {}, {
+      headers: {
+        Authorization: 'Bearer ' + token,
+        "Content-Type": "application/json"
+      }
+    })
   },
 
   addUser: (taiKhoan) => {
@@ -73,15 +87,16 @@ const userDashboardApi = {
 
   editUser: (taiKhoan) => {
     const url = "/QuanLyNguoiDung/CapNhatThongTinNguoiDung";
-    return axiosClient.post(url, taiKhoan, {
+    return axiosClient.put(url, {nd: taiKhoan} , {
       headers: {
-        // "Content-Type": "multipart/form-data",
+        "Content-Type": "application/json-patch+json",
         Authorization: "Bearer " + token,
       },
     });
   },
 
-  deleteUser: ({ taiKhoan, token }) => {
+  deleteUser: ({ taiKhoan }) => {
+    console.log(taiKhoan)
     const url = "/QuanLyNguoiDung/XoaNguoiDung";
     return axiosClient.delete(url, {
       params: {

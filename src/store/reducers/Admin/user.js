@@ -21,6 +21,19 @@ const userUserReducer = (state = userUserInitialState, { type, payload }) => {
       state.loading = false;
       state.error = payload;
       return { ...state };
+    
+    case AdminUserTypes.ADMIN_GET_USER_BY_ID_REQUEST:
+      state.loading = true;
+      return { ...state };
+    case AdminUserTypes.ADMIN_GET_USER_BY_ID_SUCCESS:
+      state.loading = false;
+      state.error = null;
+      state.editingUser = payload;
+      return { ...state };
+    case AdminUserTypes.ADMIN_GET_USER_BY_ID_FAILURE:
+      state.loading = false;
+      state.error = payload;
+      return { ...state };
 
     case AdminUserTypes.ADMIN_EDIT_USER_BY_ID_REQUEST:
       state.loading = true;

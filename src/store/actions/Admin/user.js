@@ -12,6 +12,16 @@ export const getAdminUserList = (taiKhoan) => async (dispatch) => {
   }
 };
 
+export const getAdminUserById = taiKhoan => async dispatch => {
+  try {
+    dispatch(createAction(AdminUserTypes.ADMIN_GET_USER_BY_ID_REQUEST));
+    const { data } = await userDashboardApi.getUserById(taiKhoan);
+    dispatch(createAction(AdminUserTypes.ADMIN_GET_USER_BY_ID_SUCCESS, data.content));
+  } catch (err) {
+    dispatch(createAction(AdminUserTypes.ADMIN_GET_USER_BY_ID_FAILURE, err?.response?.data?.content));
+  }
+}
+
 export const addAminUser = (taiKhoan) => async (dispatch) => {
   try {
     dispatch(createAction(AdminUserTypes.ADMIN_ADD_USER_BY_ID_REQUEST, {}));
@@ -28,7 +38,7 @@ export const addAminUser = (taiKhoan) => async (dispatch) => {
   }
 };
 
-export const editAminUser = (taiKhoan) => async (dispatch) => {
+export const editAdminUser = (taiKhoan) => async (dispatch) => {
   try {
     dispatch(createAction(AdminUserTypes.ADMIN_EDIT_USER_BY_ID_REQUEST, {}));
     const { data } = await userDashboardApi.editUser(taiKhoan);
@@ -49,7 +59,7 @@ export const deleteUserItem = (taiKhoan) => async (dispatch) => {
     const { data } = await userDashboardApi.deleteUser(taiKhoan);
     // console.log("data", data.content);
     alert(data.content);
-    dispatch(getAdminUserList());
+    dispatch(getAdminUserList(taiKhoan));
   } catch (err) {
     console.log("Error", err.response);
   }
