@@ -189,6 +189,34 @@
     margin-left: 10px;
   }
 }
+
+@media (min-width: 375px) {
+  .admin-users {
+    .admin--user__search {
+      top: 10%;
+      left: 78%;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .admin-users {
+    .admin--user__search {
+      top: 10%;
+      left: 78%;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .admin-users {
+    .admin--user__search {
+      top: 10%;
+      left: 78%;
+    }
+  }
+}
+
 @media (min-width: 1200px) {
   .admin-users {
     .admin--user__search {
@@ -209,7 +237,7 @@
 @media (min-width: 2560px) {
   .admin-users {
     .admin--user__search {
-      top: 5%;
+      top: 10%;
     }
     .admin_users {
       .ant-table-pagination.ant-pagination {
