@@ -14,7 +14,8 @@ import { useForm } from "antd/lib/form/Form";
 import moment from "moment";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router";
+import { useParams } from "react-router";
+import SnackbarPopup from "../../../components/Snackbar";
 import { addNewRules } from "../../../constants/formRules";
 import { getBase64 } from "../../../helpers";
 import {
@@ -25,12 +26,13 @@ import {
 import "./style.scss";
 
 const AdminMovieForm = () => {
-    const history = useHistory();
     const [form] = useForm();
     const { id } = useParams();
     const dispatch = useDispatch();
     const imageRef = React.useRef(null);
-    const { editingMovie, loading } = useSelector((state) => state.adminMovie);
+    const { editingMovie, loading, notify, error } = useSelector(
+        (state) => state.adminMovie
+    );
     const [previewImage, setPreviewImage] = React.useState("");
     const [fileList, setFileList] = React.useState([]);
     const [isHot, setIsHot] = React.useState(true);
@@ -61,6 +63,13 @@ const AdminMovieForm = () => {
     const handleComingSwitch = (value) => setIsComing(value);
     const handleShowingSwitch = (value) => setIsShowing(value);
 
+    // const convertImgUrlToImage = (url) => {
+    //     let objectURL = URL.createObjectURL(url);
+    //     let myImage = new Image();
+    //     myImage.src = objectURL;
+    //     document.getElementById("myImg").appendChild(myImage);
+    // };
+
     const normFile = (e) => {
         console.log("Upload event:", e);
 
@@ -71,37 +80,63 @@ const AdminMovieForm = () => {
         return e && e.fileList;
     };
 
-    const onFinish = (values) => {
-        const dataValues = {
-            ...values,
-            ngayKhoiChieu: values["ngayKhoiChieu"].format("DD/MM/YYYY"),
-            hot: isHot,
-            File: fileList[0],
-            sapChieu: isComing,
-            dangChieu: isShowing,
-        };
-
-        const blob = new Blob([previewImage], { type: values.File[0].type });
-        console.log(blob);
-        const formData = new FormData();
-        formData.append("maPhim", dataValues["maPhim"]);
-        formData.append("tenPhim", dataValues["tenPhim"]);
-        formData.append("moTa", dataValues["moTa"]);
-        formData.append("ngayKhoiChieu", dataValues["ngayKhoiChieu"]);
-        formData.append("sapChieu", dataValues["sapChieu"]);
-        formData.append("dangChieu", dataValues["dangChieu"]);
-        formData.append("hot", dataValues["hot"]);
-        formData.append("danhGia", dataValues["danhGia"]);
-        formData.append("trailer", dataValues["trailer"]);
-        formData.append("File", blob, values.File[0].name);
-        
-        const handleRedirectAfterSuccess = () => history.push("/admin/films");
-
+    const onFinish = async (values) => {
         if (editingMovie) {
-            console.log(dataValues)
-            dispatch(editMovie(formData, handleRedirectAfterSuccess));
+            // const convertFile = async url => {
+            //     imageRef.current = URL.createObjectURL(url);
+            //     const fileUpload = await getBase64(url);
+                
+            //     return fileUpload;
+            // }
+
+            const dataValues = {
+                ...values,
+                ngayKhoiChieu: values["ngayKhoiChieu"].format("DD/MM/YYYY"),
+                hot: isHot,
+                File: fileList[0] || editingMovie?.hinhAnh,
+                sapChieu: isComing,
+                dangChieu: isShowing,
+            };
+
+            const formData = new FormData();
+            formData.append("maPhim", dataValues["maPhim"]);
+            formData.append("tenPhim", dataValues["tenPhim"]);
+            formData.append("moTa", dataValues["moTa"]);
+            formData.append("ngayKhoiChieu", dataValues["ngayKhoiChieu"]);
+            formData.append("sapChieu", dataValues["sapChieu"]);
+            formData.append("dangChieu", dataValues["dangChieu"]);
+            formData.append("hot", dataValues["hot"]);
+            formData.append("danhGia", dataValues["danhGia"]);
+            formData.append("trailer", dataValues["trailer"]);
+            formData.append("File", dataValues.File);
+            dispatch(editMovie(formData));
+        } else {
+            const dataValues = {
+                ...values,
+                ngayKhoiChieu: values["ngayKhoiChieu"].format("DD/MM/YYYY"),
+                hot: isHot,
+                File: fileList[0],
+                sapChieu: isComing,
+                dangChieu: isShowing,
+            };
+
+            const blob = new Blob([previewImage], {
+                type: values.File[0].type,
+            });
+            const formData = new FormData();
+            formData.append("maPhim", dataValues["maPhim"]);
+            formData.append("tenPhim", dataValues["tenPhim"]);
+            formData.append("moTa", dataValues["moTa"]);
+            formData.append("ngayKhoiChieu", dataValues["ngayKhoiChieu"]);
+            formData.append("sapChieu", dataValues["sapChieu"]);
+            formData.append("dangChieu", dataValues["dangChieu"]);
+            formData.append("hot", dataValues["hot"]);
+            formData.append("danhGia", dataValues["danhGia"]);
+            formData.append("trailer", dataValues["trailer"]);
+            formData.append("File", blob, values.File[0].name);
+
+            dispatch(addNewMovie(formData));
         }
-        else dispatch(addNewMovie(formData, handleRedirectAfterSuccess));
     };
 
     const onFinishFailed = (errorInfo) => {
@@ -142,6 +177,7 @@ const AdminMovieForm = () => {
 
     return (
         <div className="add--movie__container">
+            {error && <SnackbarPopup type="error" message={error} />}
             <div className="add--movie">
                 <div className="add--movie__title">
                     <h2>{id ? "Edit" : "Add New"}</h2>
@@ -181,6 +217,8 @@ const AdminMovieForm = () => {
                                                 />
                                             ) : editingMovie ? (
                                                 <img
+                                                    id="myImg"
+                                                    // src={convertImgToBase64URL(editingMovie?.hinhAnh)}
                                                     src={editingMovie?.hinhAnh}
                                                     alt="avatar"
                                                     style={{ width: "100%" }}

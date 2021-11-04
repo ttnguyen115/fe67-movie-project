@@ -29,7 +29,7 @@ const SignUp = () => {
             style={{ backgroundImage: `url(${background})` }}
         >
             {error && (
-                <SnackbarPopup error={error} />
+                <SnackbarPopup type="error" message={error} />
             )}
             <div className="form__wrapper">
                 <Form

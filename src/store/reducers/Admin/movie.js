@@ -31,7 +31,8 @@ const adminMovieReducer = (state = adminMovieInitialState, { type, payload }) =>
         case adminTypes.ADMIN_ADD_MOVIE_SUCCESS:
             state.loading = false;
             state.error = null;
-            state.movieList = payload;
+            state.movieList = payload.data;
+            state.notify = payload.message;
             return { ...state };
         case adminTypes.ADMIN_ADD_MOVIE_FAILURE:
             state.loading = false;
@@ -64,15 +65,15 @@ const adminMovieReducer = (state = adminMovieInitialState, { type, payload }) =>
             state.error = payload;
             return { ...state };
 
-        case adminTypes.ADMIN_DELETE_MOVIE_BY_ID_REQUEST:
+        case adminTypes.ADMIN_DELETE_MOVIE_REQUEST:
             state.loading = true;
             return { ...state };
-        case adminTypes.ADMIN_DELETE_MOVIE_BY_ID_SUCCESS:
+        case adminTypes.ADMIN_DELETE_MOVIE_SUCCESS:
             state.loading = false;
             state.error = null;
             state.notify = payload;
             return { ...state };
-        case adminTypes.ADMIN_DELETE_MOVIE_BY_ID_FAILURE:
+        case adminTypes.ADMIN_DELETE_MOVIE_FAILURE:
             state.loading = false;
             state.error = payload;
             return { ...state };

@@ -5,7 +5,6 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 import avatar from "../../../assets/img/avatar.svg";
-import LoadingSpin from '../../../components/LoadingSpin';
 import "./style.scss";
 
 const AdminSidebar = () => {

@@ -8,10 +8,11 @@ import { getAdminMovieList } from "../../../store/actions/Admin/movie";
 import { adminTypes } from "../../../store/actions/type";
 import MovieItem from "./MovieItem";
 import "./style.scss";
+import SnackbarPopup from '../../../components/Snackbar/index';
 
 const AdminMovie = () => {
     const dispatch = useDispatch();
-    const { movieList } = useSelector((state) => state.adminMovie);
+    const { movieList, notify } = useSelector((state) => state.adminMovie);
     const [movieName, setMovieName] = React.useState(null);
     const [page, setPage] = React.useState(1);
 
@@ -32,6 +33,9 @@ const AdminMovie = () => {
 
     return (
         <div className="admin--movie__wrapper">
+            {
+                notify && <SnackbarPopup type="success" message={notify} />
+            }
             <div className="admin--movie">
                 <div className="admin--movie__title">
                     <h2>Movie List</h2>

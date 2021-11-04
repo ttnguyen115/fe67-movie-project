@@ -6,7 +6,7 @@ import { Link, useHistory } from "react-router-dom";
 import background from "../../assets/img/notfound-bg.jpg";
 import { formRules } from "../../constants/formRules";
 import "./styles.scss";
-import SnackbarPopup from '../../components/Snackbar/index';
+import SnackbarPopup from '../../components/Snackbar';
 import { signin } from '../../store/actions/user';
 
 const SignIn = () => {
@@ -29,7 +29,7 @@ const SignIn = () => {
             style={{ backgroundImage: `url(${background})` }}
         >
             {!!error && (
-                <SnackbarPopup error={error} />
+                <SnackbarPopup type="error" message={error} />
             )}
             <div className="form__wrapper">
                 <Form
