@@ -59,42 +59,227 @@
 //     }
 // }
 
-.container {
-    .user__btn,
-    .header__search.ant-input-group-wrapper {
-        display: flex;
-        align-items: center;
-    }
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #131720;
+    z-index: 99;
+    transition: 0.5s, margin 0s;
+}
 
-    .header__search {
-        max-width: 250px;
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+
+    .header-content {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        height: 80px;
         width: 100%;
 
-        .ant-input-affix-wrapper,
-        .ant-input-wrapper {
-            background-color: #151f30;
-            border: none;
-            border-radius: 16px !important;
+        .header__menu {
+            position: absolute;
+            width: 24px;
+            height: 22px;
+            display: block;
+            left: 0;
+            top: 29px;
 
             &:focus {
                 outline: none;
             }
+
+            span {
+                position: absolute;
+                left: 0;
+                width: 24px;
+                height: 2px;
+                background-color: #fff;
+                border-radius: 2px;
+                transition: 0.5s;
+                opacity: 1;
+
+                &:first-child {
+                    top: 0;
+                }
+
+                &:nth-child(2) {
+                    top: 10px;
+                    width: 16px;
+                }
+
+                &:last-child {
+                    top: 20px;
+                    width: 8px;
+                }
+            }
         }
 
-        .ant-input {
-            background-color: inherit;
-            padding: 0 20px;
-            font-size: 14px;
-            border-radius: 16px;
-            color: #fff;
-            height: 40px;
-            border: none;
-            
-            
+        .header__logo {
+            display: block;
+            margin-left: 35px;
+            height: auto;
+            width: 80px;
         }
 
-        .ant-input-group-addon {
-            display: none;
+        .header__actions {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+
+            .header__form {
+                position: absolute;
+                top: auto;
+                left: 0;
+                right: 0;
+                bottom: -80px;
+                height: 80px;
+                background-color: #131720;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: center;
+                pointer-events: none;
+                transition: 0.5s;
+
+                &-input {
+                    width: calc(100% - 40px);
+                    height: 40px;
+                    border-radius: 16px;
+                    background-color: #151f30;
+                    border: none;
+                    padding: 0 60px 0 20px;
+                    font-size: 14px;
+                    color: #fff;
+                }
+
+                &-btn {
+                    position: absolute;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    width: 20px;
+                    height: 20px;
+                    right: 60px;
+
+                    svg {
+                        width: 20px;
+                        height: auto;
+                        fill: #2f80ed;
+                        transition: fill 0.5s;
+                    }
+                }
+
+                &-close {
+                    position: absolute;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    width: 16px;
+                    height: 16px;
+                    right: 0;
+                    opacity: 0.7;
+
+                    svg {
+                        width: 16px;
+                        height: auto;
+                        fill: #2f80ed;
+                    }
+                }
+
+                &--active {
+                    pointer-events: auto;
+                    bottom: 0;
+                }
+            }
+
+            .header__search {
+                margin-right: 30px;
+
+                svg {
+                    width: 20px;
+                    height: auto;
+                    fill: #2f80ed;
+                }
+            }
+
+            .header__user {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: center;
+                color: #2f80ed;
+
+                span {
+                    font-size: 14px;
+                    color: #e0e0e0;
+                    font-weight: 500;
+                    margin-right: 10px;
+                    transition: 0.5s;
+                }
+            }
+
+            .header__user--signout {
+                margin-left: 20px;
+                
+                svg {
+                    width: 20px;
+                    fill: #2f80ed;
+                    transition: all .5s;
+                }
+                
+                &:hover svg {
+                    fill: #fff;
+                }
+            }
         }
     }
+
+    // .user__btn,
+    // .header__search.ant-input-group-wrapper {
+    //     display: flex;
+    //     align-items: center;
+    // }
+
+    // .header__search {
+    //     max-width: 250px;
+    //     width: 100%;
+
+    //     .ant-input-affix-wrapper,
+    //     .ant-input-wrapper {
+    //         background-color: #151f30;
+    //         border: none;
+    //         border-radius: 16px !important;
+
+    //         &:focus {
+    //             outline: none;
+    //         }
+    //     }
+
+    //     .ant-input {
+    //         background-color: inherit;
+    //         padding: 0 20px;
+    //         font-size: 14px;
+    //         border-radius: 16px;
+    //         color: #fff;
+    //         height: 40px;
+    //         border: none;
+    //     }
+
+    //     .ant-input-group-addon {
+    //         display: none;
+    //     }
+    // }
 }

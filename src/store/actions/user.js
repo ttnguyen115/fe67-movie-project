@@ -43,6 +43,18 @@ export const refreshToken = token => async dispatch => {
     }
 }
 
+export const logout = (callback) => async dispatch => {
+    try {
+        dispatch(createAction(authTypes.LOG_OUT_REQUEST));
+        localStorage.removeItem('token');
+        dispatch(createAction(adminTypes.IS_ADMIN, false));
+        dispatch(createAction(authTypes.LOG_OUT_SUCCESS));
+        callback();
+    } catch (err) {
+        dispatch(createAction(authTypes.LOG_OUT_FAIL, err.response?.data.content));
+    }
+}
+
 export const editUserInfo = values => async dispatch => {
     try {
         const token = localStorage.getItem('token');
