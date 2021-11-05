@@ -3,11 +3,17 @@
   line-height: 50px;
 
   &__left {
-    width: 70%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
     color: #fff;
+
+    padding-top: 24px;
 
     &_infoSeat {
       display: flex;
+
       &-a {
         width: 45px;
         height: 40px;

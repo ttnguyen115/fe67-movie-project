@@ -1,51 +1,66 @@
-.ticketroom {
-  margin-top: 100px;
-  line-height: 50px;
+.profile {
+  padding-top: 96px;
 }
 
-.ticketroom__left {
-  width: 70%;
+.profile__header {
+  padding: 0 15px;
+  font-size: 32px;
   color: #fff;
 }
 
-.ticketroom__left_infoSeat {
+.profile__container {
+  position: relative;
+  margin: 0 15px;
+  padding: 15px;
+  padding-bottom: 0;
   display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-color: #151f30;
+  border-radius: 16px;
 }
 
-.ticketroom__left_infoSeat-a {
-  width: 45px;
-  height: 40px;
-  margin-right: 16px;
-}
-
-.ticketroom__left-title {
-  font-size: 36px;
-  text-align: center;
-}
-
-.ticketroom__left-times {
+.profile__container--user {
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-.ticketroom__left-cinema {
-  display: flex;
-  justify-content: space-between;
+.profile__container .profile__avatar {
+  margin-right: 15px;
 }
 
-.ticketroom__left-chair-table {
-  display: flex;
-  justify-content: space-between;
+.profile__container .profile__avatar img {
+  border-radius: 10px;
+  width: 100%;
 }
 
-.ticketroom__left-total {
+.profile__container .profile__meta {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
-.ticketroom__left-btn {
-  padding-top: 20px;
-  display: flex;
-  justify-content: center;
+.profile__container .profile__meta h3 {
+  color: #fff;
+  display: block;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 7px;
+  line-height: 100%;
+}
+
+.profile__container .profile__meta span {
+  color: #e0e0e0;
+  font-size: 12px;
+  line-height: 100%;
+}
+
+.profile .ant-tabs-tab-btn {
+  color: #fff;
 }
 /*# sourceMappingURL=style.css.map */

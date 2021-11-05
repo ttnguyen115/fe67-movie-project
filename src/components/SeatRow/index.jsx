@@ -20,7 +20,9 @@ const SeatRow = ({ seatPerRow }) => {
       return (
         <Fragment key={index}>
           {seatItem.daDat ? (
-            <button className={`seat-btn seat-btn-disabled disable bg-red-400`}>
+            <button
+              className={` 2xl:w-12 2xl:h-12 lg:w-11 lg:h-11 md:w-7 md:h-9 sm:w-7 sm:h-8 leading-6 seat-btn seat-btn-disabled disable bg-red-400 `}
+            >
               {seatItem.tenGhe}
             </button>
           ) : (
@@ -28,7 +30,7 @@ const SeatRow = ({ seatPerRow }) => {
               onClick={() =>
                 dispatch(createAction(actionTypes.BOOKING_TICKET, seatItem))
               }
-              className={`seat-btn seat-btn-active ${styleSelected} ${
+              className={` 2xl:w-12 2xl:h-12 lg:w-11 lg:h-11 md:w-7 md:h-9 sm:w-7 sm:h-8 leading-6 seat-btn seat-btn-active ${styleSelected} ${
                 seatItem.loaiGhe === "Vip" ? "bg-yellow-600" : "bg-gray-500"
               } `}
               key={seatItem.maGhe}

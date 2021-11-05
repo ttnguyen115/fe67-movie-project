@@ -49,7 +49,9 @@ const HomeCinema = () => {
                               className="w-12 h-12 rounded-full"
                               alt=""
                             />
-                            <div className="ml-4 text-white">{cumRap.tenCumRap}</div>
+                            <div className="ml-4 text-white">
+                              {cumRap.tenCumRap}
+                            </div>
                           </div>
                         }
                         key={cumRap.maCumRap}

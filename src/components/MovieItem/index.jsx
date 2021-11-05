@@ -11,8 +11,10 @@ const MovieItem = (movie) => {
             <img className="movie-home-img" src={hinhAnh} alt="" />
           </div>
         </div>
-      <h4 className="text-white movie-home-title">{tenPhim}</h4>
-      <p className="text-gray-100 movie-home-text">{moTa.substr(0, 40) + ".."}</p>
+        <h4 className="text-white movie-home-title">{tenPhim}</h4>
+        <p className="text-gray-100 movie-home-text">
+          {moTa.substr(0, 40) + ".."}
+        </p>
       </Link>
     </div>
   );
