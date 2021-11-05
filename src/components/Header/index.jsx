@@ -2,13 +2,14 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 import { logout } from "../../store/actions/user";
-import "./index.scss";
+// import "./index.scss";
 import "./style.scss";
 
 const Header = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const [searchOpen, setSearchOpen] = React.useState(false);
+    const [navOpen, setNavOpen] = React.useState(false);
     const { currentUser, loading } = useSelector((state) => state.user);
     const { isAdmin } = useSelector((state) => state.admin);
 
@@ -17,22 +18,28 @@ const Header = () => {
     const handleSearchOpen = () => setSearchOpen(true);
     const handleSearchClose = () => setSearchOpen(false);
 
+    const handleNavOpen = () => setNavOpen(!navOpen);
+
     const handleLogout = () => {
-        const handleRedirect = () => history.push('/signin');
+        const handleRedirect = () => history.push("/signin");
         dispatch(logout(handleRedirect));
-    }
+    };
 
     return (
-        <header>
+        <header className={navOpen && "header--menu"}>
             <div className="container">
                 <div className="header-content">
-                    <button class="header__menu" type="button">
+                    <button
+                        class={`header__menu ${
+                            navOpen && "header__menu--active"
+                        }`}
+                        type="button"
+                        onClick={handleNavOpen}
+                    >
                         <span></span>
                         <span></span>
                         <span></span>
                     </button>
-
-                    
 
                     <NavLink
                         to="/"
@@ -45,6 +52,23 @@ const Header = () => {
                             alt="logo"
                         />
                     </NavLink>
+
+                    {isAdmin && (
+                        <ul
+                            className={`header__nav ${
+                                navOpen && "header__nav--active"
+                            }`}
+                        >
+                            <li className="header__nav-item">
+                                <NavLink
+                                    to="/admin/films"
+                                    className="header__nav-link"
+                                >
+                                    Admin Dashboard
+                                </NavLink>
+                            </li>
+                        </ul>
+                    )}
 
                     <div className="header__actions">
                         <form
@@ -123,7 +147,9 @@ const Header = () => {
                                 </button>
                             </React.Fragment>
                         ) : loading ? (
-                            <div className="header__user">Username loading...</div>
+                            <div className="header__user">
+                                Username loading...
+                            </div>
                         ) : (
                             <React.Fragment>
                                 <NavLink
@@ -131,7 +157,7 @@ const Header = () => {
                                     type="button"
                                     className="header__user"
                                     disabled={loading}
-                                    >
+                                >
                                     Sign Up
                                 </NavLink>
                                 <NavLink
