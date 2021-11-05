@@ -27,8 +27,6 @@ const DeleteModal = ({ isModalVisible, handleOk, handleCancel }) => {
             className="modal-delete"
             title="Delete Item"
             visible={isModalVisible}
-            // onOk={handleOk}
-            // onCancel={handleCancel}
             centered
             closable={false}
             footer={<CustomizedFooterModal />}

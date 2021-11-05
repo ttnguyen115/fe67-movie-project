@@ -8,7 +8,7 @@ const FooterHome = () => {
         <div className="container flex flex-col justify-between py-10 mx-auto space-y-8 lg:flex-row lg:space-y-0">
           <div className="lg:w-1/3">
             <a
-              href="#"
+              href
               className="flex justify-center space-x-3 lg:justify-start"
             >
               <div className="flex items-center justify-center w-12 h-12 rounded-full bg-violet-600">
@@ -17,7 +17,7 @@ const FooterHome = () => {
                   aria-label="Back to homepage"
                   className="flex items-center p-2"
                 >
-                  <img className="w-10" src="https://i.imgur.com/lC22izJ.png" />
+                  <img className="w-10" src="https://i.imgur.com/lC22izJ.png" alt="logo" />
                 </a>
               </div>
 
@@ -33,7 +33,7 @@ const FooterHome = () => {
                   </div>
                   <div className="flex justify-start space-x-3">
                     <a
-                      href="#"
+                      href
                       title="Facebook"
                       className="flex items-center p-1"
                     >
@@ -47,7 +47,7 @@ const FooterHome = () => {
                       </svg>
                     </a>
                     <a
-                      href="#"
+                      href
                       title="Twitter"
                       className="flex items-center p-1"
                     >
@@ -60,7 +60,7 @@ const FooterHome = () => {
                       </svg>
                     </a>
                     <a
-                      href="#"
+                      href
                       title="Instagram"
                       className="flex items-center p-1"
                     >
@@ -86,16 +86,16 @@ const FooterHome = () => {
               </h3>
               <ul className="space-y-1">
                 <li>
-                  <a href="#">About us</a>
+                  <a href>About us</a>
                 </li>
                 <li>
-                  <a href="#">My profile</a>
+                  <a href>My profile</a>
                 </li>
                 <li>
-                  <a href="#">Pricing plans</a>
+                  <a href>Pricing plans</a>
                 </li>
                 <li>
-                  <a href="#">Contacts</a>
+                  <a href>Contacts</a>
                 </li>
               </ul>
             </div>
@@ -104,16 +104,16 @@ const FooterHome = () => {
               <h3 className="tracking-wide text-gray-100 uppercase">Browse</h3>
               <ul className="space-y-1">
                 <li>
-                  <a href="#">Live TV</a>
+                  <a href>Live TV</a>
                 </li>
                 <li>
-                  <a href="#">Live News</a>
+                  <a href>Live News</a>
                 </li>
                 <li>
-                  <a href="#">Live Sports</a>
+                  <a href>Live Sports</a>
                 </li>
                 <li>
-                  <a href="#">Streaming Library</a>
+                  <a href>Streaming Library</a>
                 </li>
               </ul>
             </div>
@@ -122,16 +122,16 @@ const FooterHome = () => {
               <h3 className="uppercase footer-nav">a</h3>
               <ul className="space-y-1">
                 <li>
-                  <a href="#">TV Shows</a>
+                  <a href>TV Shows</a>
                 </li>
                 <li>
-                  <a href="#">Movies</a>
+                  <a href>Movies</a>
                 </li>
                 <li>
-                  <a href="#">Kids</a>
+                  <a href>Kids</a>
                 </li>
                 <li>
-                  <a href="#">Collections</a>
+                  <a href>Collections</a>
                 </li>
               </ul>
             </div>
@@ -140,16 +140,16 @@ const FooterHome = () => {
               <h3 className="text-gray-100 uppercase">Help</h3>
               <ul className="space-y-1">
                 <li>
-                  <a href="#">Account & Billing</a>
+                  <a href>Account & Billing</a>
                 </li>
                 <li>
-                  <a href="#">Plans & Pricing</a>
+                  <a href>Plans & Pricing</a>
                 </li>
                 <li>
-                  <a href="#">Supported devices</a>
+                  <a href>Supported devices</a>
                 </li>
                 <li>
-                  <a href="#">Accessibility</a>
+                  <a href>Accessibility</a>
                 </li>
               </ul>
             </div>

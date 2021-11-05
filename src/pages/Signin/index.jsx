@@ -4,10 +4,10 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import background from "../../assets/img/notfound-bg.jpg";
-import { formRules } from "../../constants/formRules";
-import "./styles.scss";
 import SnackbarPopup from '../../components/Snackbar/index';
+import { formRules } from "../../constants/formRules";
 import { signin } from '../../store/actions/user';
+import "./styles.scss";
 
 const SignIn = () => {
     const dispatch = useDispatch();

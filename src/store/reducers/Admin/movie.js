@@ -6,6 +6,8 @@ const adminMovieInitialState = {
     movieList: [],
     editingMovie: null,
     notify: '',
+    theaterList: [],
+    selectedTheaterSystem: [],
 }
 
 const adminMovieReducer = (state = adminMovieInitialState, { type, payload }) => {
@@ -22,7 +24,7 @@ const adminMovieReducer = (state = adminMovieInitialState, { type, payload }) =>
             state.loading = false;
             state.error = payload;
             return { ...state };
-        
+
         case adminTypes.ADMIN_ADD_MOVIE_REQUEST:
             state.loading = true;
             return { ...state };
@@ -35,7 +37,7 @@ const adminMovieReducer = (state = adminMovieInitialState, { type, payload }) =>
             state.loading = false;
             state.error = payload;
             return { ...state };
-        
+
         case adminTypes.ADMIN_GET_MOVIE_BY_ID_REQUEST:
             state.loading = true;
             return { ...state };
@@ -48,7 +50,7 @@ const adminMovieReducer = (state = adminMovieInitialState, { type, payload }) =>
             state.loading = false;
             state.error = payload;
             return { ...state };
-        
+
         case adminTypes.ADMIN_EDIT_MOVIE_BY_ID_REQUEST:
             state.loading = true;
             return { ...state };
@@ -61,7 +63,7 @@ const adminMovieReducer = (state = adminMovieInitialState, { type, payload }) =>
             state.loading = false;
             state.error = payload;
             return { ...state };
-        
+
         case adminTypes.ADMIN_DELETE_MOVIE_BY_ID_REQUEST:
             state.loading = true;
             return { ...state };
@@ -75,9 +77,49 @@ const adminMovieReducer = (state = adminMovieInitialState, { type, payload }) =>
             state.error = payload;
             return { ...state };
 
+        case adminTypes.ADMIN_GET_THEATER_LIST_REQUEST:
+            state.loading = true;
+            return { ...state };
+        case adminTypes.ADMIN_GET_THEATER_LIST_SUCCESS:
+            state.loading = false;
+            state.error = null;
+            state.theaterList = payload;
+            return { ...state };
+        case adminTypes.ADMIN_GET_THEATER_LIST_FAILURE:
+            state.loading = false;
+            state.error = payload;
+            return { ...state };
+
+        case adminTypes.ADMIN_GET_THEATER_ITEM_BY_ID_REQUEST:
+            state.loading = true;
+            return { ...state };
+        case adminTypes.ADMIN_GET_THEATER_ITEM_BY_ID_SUCCESS:
+            state.loading = false;
+            state.error = null;
+            state.selectedTheaterSystem = payload;
+            return { ...state };
+        case adminTypes.ADMIN_GET_THEATER_ITEM_BY_ID_FAILURE:
+            state.loading = false;
+            state.error = payload;
+            return { ...state };
+
+        case adminTypes.ADMIN_ADD_SHOWTIME_REQUEST:
+            state.loading = true;
+            return { ...state };
+        case adminTypes.ADMIN_ADD_SHOWTIME_SUCCESS:
+            state.loading = false;
+            state.error = null;
+            state.notify = payload;
+            return { ...state };
+        case adminTypes.ADMIN_ADD_SHOWTIME_FAILURE:
+            state.loading = false;
+            state.error = payload;
+            return { ...state };
+
         case adminTypes.CLEAR_FORM:
             state.editingMovie = null;
             return { ...state };
+        
         default:
             return state
     }

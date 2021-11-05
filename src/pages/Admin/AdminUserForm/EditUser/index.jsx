@@ -1,16 +1,13 @@
+import { Button, Form, Input, Select } from "antd";
 import React from "react";
-import "./index.scss";
-import { Form, Input, Button, Select } from "antd";
-import { useFormik } from "formik";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import {
     editAdminUser,
-    getAdminUserById,
-    getAdminUserList,
+    getAdminUserById
 } from "../../../../store/actions/Admin/user";
+import "./index.scss";
+
 const layout = {
     labelCol: {
         span: 8,
