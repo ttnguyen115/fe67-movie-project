@@ -84,7 +84,7 @@ const addNewRules = {
             message: 'Trailer URL is required'
         },
         {
-            pattern: /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
+            pattern: /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/,
             message: 'Trailer URL must start with HTTP/HTTPS'
         }
     ]
@@ -114,14 +114,6 @@ const showtimeRules = {
             required: true,
             message: 'Price field is required'
         },
-        // {
-        //     min: 50000,
-        //     message: 'The lowest price is 50.000 VND'
-        // },
-        // {
-        //     max: 200000,
-        //     message: 'The highest price is 200.000 VND'
-        // },
     ],
 }
 

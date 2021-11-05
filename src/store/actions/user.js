@@ -5,7 +5,7 @@ import { authTypes, adminTypes } from "./type"
 export const signup = (values, handleRedirect) => async dispatch => {
     try {
         dispatch(createAction(authTypes.SIGN_UP_REQUEST, {}));
-        const { statusCode, message } = await userApi.signup(values);
+        const { statusCode } = await userApi.signup(values);
         if (statusCode === 200) handleRedirect();
         dispatch(createAction(authTypes.SIGN_UP_SUCCESS, {}));
     } catch (err) {

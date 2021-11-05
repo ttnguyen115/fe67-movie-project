@@ -13,8 +13,6 @@ const Header = () => {
     const { currentUser, loading } = useSelector((state) => state.user);
     const { isAdmin } = useSelector((state) => state.admin);
 
-    const onSearch = (value) => console.log(value);
-
     const handleSearchOpen = () => setSearchOpen(true);
     const handleSearchClose = () => setSearchOpen(false);
 
