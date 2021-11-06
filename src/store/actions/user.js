@@ -5,7 +5,7 @@ import { authTypes, adminTypes } from "./type"
 export const signup = (values, handleRedirect) => async dispatch => {
     try {
         dispatch(createAction(authTypes.SIGN_UP_REQUEST, {}));
-        const { statusCode, message } = await userApi.signup(values);
+        const { statusCode } = await userApi.signup(values);
         if (statusCode === 200) handleRedirect();
         dispatch(createAction(authTypes.SIGN_UP_SUCCESS, {}));
     } catch (err) {
@@ -40,6 +40,18 @@ export const refreshToken = token => async dispatch => {
         dispatch(createAction(authTypes.REFRESH_TOKEN_SUCCESS, data.content));
     } catch (err) {
         dispatch(createAction(authTypes.REFRESH_TOKEN_FAIL, err.response?.data.content));
+    }
+}
+
+export const logout = (callback) => async dispatch => {
+    try {
+        dispatch(createAction(authTypes.LOG_OUT_REQUEST));
+        localStorage.removeItem('token');
+        dispatch(createAction(adminTypes.IS_ADMIN, false));
+        dispatch(createAction(authTypes.LOG_OUT_SUCCESS));
+        callback();
+    } catch (err) {
+        dispatch(createAction(authTypes.LOG_OUT_FAIL, err.response?.data.content));
     }
 }
 

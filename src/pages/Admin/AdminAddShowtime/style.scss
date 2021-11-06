@@ -1,10 +1,10 @@
-.add--movie__container {
+.add-showtime__container {
     position: relative;
     margin-top: 70px;
     padding: 20px 0 0;
 }
 
-.add--movie {
+.add-showtime {
     width: 100%;
     padding-right: 15px;
     padding-left: 15px;
@@ -37,43 +37,26 @@
         margin-bottom: 30px;
         border: 1px solid rgba(47, 128, 237, 0.1);
 
-        .form--dragger {
-            margin: 0;
-
-            .ant-upload-list {
-                display: none;
-            }
-
-            .ant-upload.ant-upload-drag {
-                width: 100%;
-                height: 400px;
-                overflow: hidden;
-                background-color: #151f30;
-                margin-bottom: 20px;
-                border-radius: 16px;
-                padding: 0 10px;
-                border: none;
-
-                svg {
-                    fill: #fff;
-                }
-            }
-
-            .ant-upload-text {
-                color: #fff;
-            }
-
-            .ant-upload-hint {
-                color: #cecece;
-            }
+        .form-img {
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            background-color: #151f30;
+            margin-bottom: 20px;
+            border-radius: 16px;
+            padding: 0 10px;
+            border: none;
         }
 
         .ant-form-item-label {
             display: none;
+        }
 
-            &:last-child {
-                display: block !important;
-            }
+        .form-movieName {
+            color: #fff;
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 30px;
         }
 
         .form--group {
@@ -81,6 +64,7 @@
             margin-bottom: 20px;
             width: 100%;
 
+            .ant-cascader-picker,
             .ant-select-selector,
             .ant-input-number,
             .ant-input {
@@ -93,10 +77,21 @@
                 font-size: 14px;
                 width: 100%;
                 padding: 0 20px;
+
+                &.ant-cascader-picker {
+                    padding: 0;
+                }
+
+                .ant-cascader-picker-label {
+                    padding: 0 20px;
+                }
             }
 
             &.ant-form-item-has-error .ant-input-number,
             &.ant-form-item-has-error .ant-picker,
+            &.ant-form-item-has-error
+                .ant-select:not(.ant-select-disabled):not(.ant-select-customize-input)
+                .ant-select-selector,
             &.ant-form-item-has-error :not(.ant-input-disabled):not(.ant-input-borderless).ant-input,
             &.ant-form-item-has-error
                 :not(.ant-input-affix-wrapper-disabled):not(.ant-input-affix-wrapper-borderless).ant-input-affix-wrapper,
@@ -132,6 +127,7 @@
                 }
             }
 
+            .ant-cascader-picker-arrow,
             .ant-select-arrow {
                 right: 22px;
 
@@ -139,14 +135,6 @@
                     fill: #40a9ff;
                 }
             }
-        }
-
-        #moTa {
-            height: 142px;
-            font-size: 14px;
-            width: 100%;
-            padding: 15px 20px;
-            resize: none;
         }
 
         .ant-picker {
@@ -185,48 +173,46 @@
     }
 }
 
-@media screen and (min-width: 768px) {
-    .content--cover,
-    .dragger--cover {
-        padding: 0 10px;
+.ant-select-dropdown.ant-select-dropdown-placement-bottomLeft,
+.ant-cascader-menus.ant-cascader-menus-placement-bottomLeft {
+    background: #151f30;
+
+    .ant-select-item-option-active:not(.ant-select-item-option-disabled),
+    .ant-select-item-option-selected:not(.ant-select-item-option-disabled),
+    .ant-cascader-menu-item-active:not(.ant-cascader-menu-item-disabled),
+    .ant-cascader-menu-item-active:not(.ant-cascader-menu-item-disabled):hover {
+        font-weight: 600;
+        background-color: #1890ff;
+        color: #fff;
     }
 
-    .ant-btn.ant-btn-primary {
-        max-width: 180px;
-        width: 100%;
+    .ant-select-item.ant-select-item-option,
+    .ant-cascader-menu-item,
+    .ant-cascader-menu-item.ant-cascader-menu-item-expand {
+        color: #fff;
+
+        &:hover {
+            background: #1890ff;
+        }
     }
 
-    .submit--cover .ant-form-item-control-input-content {
-        text-align: center;
-    }
-}
-
-@media screen and (min-width: 992px) {
-    .input--second {
-        padding: 0 10px;
-    }
-
-    .input--first {
-        padding-right: 10px;
-    }
-
-    .input-last {
-        padding-left: 10px;
+    .ant-empty-description {
+        color: #fff;
     }
 }
 
 @media screen and (min-width: 1200px) {
-    .add--movie__container {
+    .add-showtime__container {
         padding: 0 15px 30px 295px;
         margin-top: 0;
 
-        .add--movie__title {
+        .add-showtime__title {
             padding-bottom: 0;
             height: 80px;
         }
     }
 
-    .dragger--cover.ant-col-md-10 {
+    .image--cover.ant-col-md-10 {
         max-width: 300px;
         width: 100%;
     }

@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from "react";
 import { Tabs } from "antd";
-import "./index.scss";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchCinemaTimes } from "../../../store/actions/cinema";
 import moment from "moment";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { fetchCinemaTimes } from "../../../store/actions/cinema";
+import "./index.scss";
 
 const { TabPane } = Tabs;
 
 const HomeCinema = () => {
+  // eslint-disable-next-line no-unused-vars
   const [state, setstate] = useState({ tabPosition: "left" });
   const { loading, cinemaTimes } = useSelector((state) => state.cinema);
   const dispatch = useDispatch();

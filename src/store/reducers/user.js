@@ -20,7 +20,6 @@ const userReducer = (state = initialState, { type, payload }) => {
             state.error = payload;
             return { ...state };
 
-
         case authTypes.SIGN_IN_REQUEST:
             state.loading = true;
             return { ...state };
@@ -46,7 +45,20 @@ const userReducer = (state = initialState, { type, payload }) => {
             state.loading = false;
             state.error = payload;
             return { ...state };
-        
+
+        case authTypes.LOG_OUT_REQUEST:
+            state.loading = true;
+            return { ...state };
+        case authTypes.LOG_OUT_SUCCESS:
+            state.loading = false;
+            state.currentUser = null;
+            state.error = null;
+            return { ...state };
+        case authTypes.LOG_OUT_FAIL:
+            state.loading = false;
+            state.error = payload;
+            return { ...state };
+
         case authTypes.EDIT_USER_REQUEST:
             state.loading = true;
             return { ...state };
@@ -59,7 +71,7 @@ const userReducer = (state = initialState, { type, payload }) => {
             state.loading = false;
             state.error = payload;
             return { ...state };
-        
+
         default: return state;
     }
 }

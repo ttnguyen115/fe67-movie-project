@@ -79,6 +79,14 @@
             }
         }
 
+        &--showtime {
+            background-color: rgba(255,195,18,0.1);
+
+            svg {
+                fill: #ffc312;
+            }
+        }
+
         &--delete.ant-btn {
             background-color: rgba(235, 87, 87, 0.1) !important;
             margin-right: 0 !important;
