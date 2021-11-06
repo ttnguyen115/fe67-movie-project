@@ -20,7 +20,7 @@ const VideoTrailer = ({ src }) => {
 
     return (
         <>
-            <iframe src={src} title="movie trailer" />
+            <iframe src={`https://www.youtube.com/embed/${url}`} title="movie trailer" />
         </>
     );
 };
