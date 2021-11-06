@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import './style.scss';
 import Plyr from "plyr-react";
-import "plyr-react/dist/plyr.css";
+import './style.scss';
 
 const VideoTrailer = ({ src }) => {
     const [url, setUrl] = useState("");
