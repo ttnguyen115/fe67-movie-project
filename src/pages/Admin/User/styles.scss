@@ -219,3 +219,30 @@
     }
   }
 }
+
+@media (min-width: 375px) {
+  .admin-users {
+    .admin--user__search {
+      top: 10%;
+      left: 78%;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .admin-users {
+    .admin--user__search {
+      top: 10%;
+      left: 78%;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .admin-users {
+    .admin--user__search {
+      top: 10%;
+      left: 78%;
+    }
+  }
+}
