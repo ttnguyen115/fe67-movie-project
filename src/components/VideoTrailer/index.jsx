@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Plyr from "plyr-react";
-import './style.scss';
+import "./style.scss";
 
 const VideoTrailer = ({ src }) => {
     const [url, setUrl] = useState("");
@@ -21,16 +20,9 @@ const VideoTrailer = ({ src }) => {
 
     return (
         <>
-            <Plyr
-                source={{
-                    type: "video",
-                    sources: [
-                        {
-                            src: url,
-                            provider: "youtube",
-                        },
-                    ],
-                }}
+            <iframe
+                src={url}
+                title="movie trailer"
             />
         </>
     );
