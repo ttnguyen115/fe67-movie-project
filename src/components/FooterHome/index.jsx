@@ -9,13 +9,13 @@ const FooterHome = () => {
           <div className="lg:w-1/3">
             <a
               href
-              className="flex justify-center space-x-3 lg:justify-start"
+              className="flex justify-center space-x-3 text-blue-600 lg:justify-start"
             >
               <div className="flex items-center justify-center w-12 h-12 rounded-full bg-violet-600">
                 <a
-                  href="/"
+                  href
                   aria-label="Back to homepage"
-                  className="flex items-center p-2"
+                  className="flex items-center p-2 text-blue-600"
                 >
                   <img className="w-10" src="https://i.imgur.com/lC22izJ.png" alt="logo" />
                 </a>
@@ -34,6 +34,7 @@ const FooterHome = () => {
                   <div className="flex justify-start space-x-3">
                     <a
                       href
+                      className="text-blue-600"
                       title="Facebook"
                       className="flex items-center p-1"
                     >
@@ -48,6 +49,7 @@ const FooterHome = () => {
                     </a>
                     <a
                       href
+                      className="text-blue-600"
                       title="Twitter"
                       className="flex items-center p-1"
                     >
@@ -61,6 +63,7 @@ const FooterHome = () => {
                     </a>
                     <a
                       href
+                      className="text-blue-600"
                       title="Instagram"
                       className="flex items-center p-1"
                     >
@@ -86,16 +89,20 @@ const FooterHome = () => {
               </h3>
               <ul className="space-y-1">
                 <li>
-                  <a href>About us</a>
+                  <a href
+                  className="text-blue-600">About us</a>
                 </li>
                 <li>
-                  <a href>My profile</a>
+                  <a href
+                  className="text-blue-600">My profile</a>
                 </li>
                 <li>
-                  <a href>Pricing plans</a>
+                  <a href
+                  className="text-blue-600">Pricing plans</a>
                 </li>
                 <li>
-                  <a href>Contacts</a>
+                  <a href
+                  className="text-blue-600">Contacts</a>
                 </li>
               </ul>
             </div>
@@ -104,16 +111,20 @@ const FooterHome = () => {
               <h3 className="tracking-wide text-gray-100 uppercase">Browse</h3>
               <ul className="space-y-1">
                 <li>
-                  <a href>Live TV</a>
+                  <a href
+                  className="text-blue-600">Live TV</a>
                 </li>
                 <li>
-                  <a href>Live News</a>
+                  <a href
+                  className="text-blue-600">Live News</a>
                 </li>
                 <li>
-                  <a href>Live Sports</a>
+                  <a href
+                  className="text-blue-600">Live Sports</a>
                 </li>
                 <li>
-                  <a href>Streaming Library</a>
+                  <a href
+                  className="text-blue-600">Streaming Library</a>
                 </li>
               </ul>
             </div>
@@ -122,16 +133,20 @@ const FooterHome = () => {
               <h3 className="uppercase footer-nav">a</h3>
               <ul className="space-y-1">
                 <li>
-                  <a href>TV Shows</a>
+                  <a href
+                  className="text-blue-600">TV Shows</a>
                 </li>
                 <li>
-                  <a href>Movies</a>
+                  <a href
+                  className="text-blue-600">Movies</a>
                 </li>
                 <li>
-                  <a href>Kids</a>
+                  <a href
+                  className="text-blue-600">Kids</a>
                 </li>
                 <li>
-                  <a href>Collections</a>
+                  <a href
+                  className="text-blue-600">Collections</a>
                 </li>
               </ul>
             </div>
@@ -140,16 +155,20 @@ const FooterHome = () => {
               <h3 className="text-gray-100 uppercase">Help</h3>
               <ul className="space-y-1">
                 <li>
-                  <a href>Account & Billing</a>
+                  <a href
+                  className="text-blue-600">Account & Billing</a>
                 </li>
                 <li>
-                  <a href>Plans & Pricing</a>
+                  <a href
+                  className="text-blue-600">Plans & Pricing</a>
                 </li>
                 <li>
-                  <a href>Supported devices</a>
+                  <a href
+                  className="text-blue-600">Supported devices</a>
                 </li>
                 <li>
-                  <a href>Accessibility</a>
+                  <a href
+                  className="text-blue-600">Accessibility</a>
                 </li>
               </ul>
             </div>
