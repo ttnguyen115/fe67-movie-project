@@ -32,7 +32,7 @@ const Detail = () => {
                 <div className="detail__container">
                     <div className="article">
                         <Grid container>
-                            <Grid item xs={12}>
+                            <Grid item xs={12} lg={8}>
                                 <a
                                     href={movieDetail?.trailer}
                                     target="_blank"
@@ -64,7 +64,7 @@ const Detail = () => {
                                 </div>
                             </Grid>
 
-                            <Grid item xs={12}>
+                            <Grid item xs={12} lg={8}>
                                 <VideoTrailer src={movieDetail?.trailer} />
                             </Grid>
                         </Grid>
