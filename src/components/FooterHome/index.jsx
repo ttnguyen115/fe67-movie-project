@@ -9,13 +9,13 @@ const FooterHome = () => {
           <div className="lg:w-1/3">
             <a
               href
-              className="flex justify-center space-x-3 text-blue-600 lg:justify-start"
+              className="flex justify-center space-x-3 lg:justify-start"
             >
               <div className="flex items-center justify-center w-12 h-12 rounded-full bg-violet-600">
                 <a
                   href
                   aria-label="Back to homepage"
-                  className="flex items-center p-2 text-blue-600"
+                  className="flex items-center p-2 "
                 >
                   <img className="w-10" src="https://i.imgur.com/lC22izJ.png" alt="logo" />
                 </a>
@@ -34,9 +34,8 @@ const FooterHome = () => {
                   <div className="flex justify-start space-x-3">
                     <a
                       href
-                      className="text-blue-600"
                       title="Facebook"
-                      className="flex items-center p-1"
+                      className="flex items-center p-1 "
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -49,7 +48,7 @@ const FooterHome = () => {
                     </a>
                     <a
                       href
-                      className="text-blue-600"
+                      className=""
                       title="Twitter"
                       className="flex items-center p-1"
                     >
@@ -63,9 +62,8 @@ const FooterHome = () => {
                     </a>
                     <a
                       href
-                      className="text-blue-600"
                       title="Instagram"
-                      className="flex items-center p-1"
+                      className="flex items-center p-1 "
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -90,19 +88,19 @@ const FooterHome = () => {
               <ul className="space-y-1">
                 <li>
                   <a href
-                  className="text-blue-600">About us</a>
+                  className="">About us</a>
                 </li>
                 <li>
                   <a href
-                  className="text-blue-600">My profile</a>
+                  className="">My profile</a>
                 </li>
                 <li>
                   <a href
-                  className="text-blue-600">Pricing plans</a>
+                  className="">Pricing plans</a>
                 </li>
                 <li>
                   <a href
-                  className="text-blue-600">Contacts</a>
+                  className="">Contacts</a>
                 </li>
               </ul>
             </div>
@@ -112,19 +110,19 @@ const FooterHome = () => {
               <ul className="space-y-1">
                 <li>
                   <a href
-                  className="text-blue-600">Live TV</a>
+                  className="">Live TV</a>
                 </li>
                 <li>
                   <a href
-                  className="text-blue-600">Live News</a>
+                  className="">Live News</a>
                 </li>
                 <li>
                   <a href
-                  className="text-blue-600">Live Sports</a>
+                  className="">Live Sports</a>
                 </li>
                 <li>
                   <a href
-                  className="text-blue-600">Streaming Library</a>
+                  className="">Streaming Library</a>
                 </li>
               </ul>
             </div>
@@ -134,19 +132,19 @@ const FooterHome = () => {
               <ul className="space-y-1">
                 <li>
                   <a href
-                  className="text-blue-600">TV Shows</a>
+                  className="">TV Shows</a>
                 </li>
                 <li>
                   <a href
-                  className="text-blue-600">Movies</a>
+                  className="">Movies</a>
                 </li>
                 <li>
                   <a href
-                  className="text-blue-600">Kids</a>
+                  className="">Kids</a>
                 </li>
                 <li>
                   <a href
-                  className="text-blue-600">Collections</a>
+                  className="">Collections</a>
                 </li>
               </ul>
             </div>
@@ -156,19 +154,19 @@ const FooterHome = () => {
               <ul className="space-y-1">
                 <li>
                   <a href
-                  className="text-blue-600">Account & Billing</a>
+                  className="">Account & Billing</a>
                 </li>
                 <li>
                   <a href
-                  className="text-blue-600">Plans & Pricing</a>
+                  className="">Plans & Pricing</a>
                 </li>
                 <li>
                   <a href
-                  className="text-blue-600">Supported devices</a>
+                  className="">Supported devices</a>
                 </li>
                 <li>
                   <a href
-                  className="text-blue-600">Accessibility</a>
+                  className="">Accessibility</a>
                 </li>
               </ul>
             </div>
