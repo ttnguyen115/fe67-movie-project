@@ -20,10 +20,7 @@ const VideoTrailer = ({ src }) => {
 
     return (
         <>
-            <iframe
-                src={url}
-                title="movie trailer"
-            />
+            <iframe src={src} title="movie trailer" />
         </>
     );
 };
