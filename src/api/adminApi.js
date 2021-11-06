@@ -56,7 +56,7 @@ const userDashboardApi = {
     const url = "/QuanLyNguoiDung/LayDanhSachNguoiDung";
     return axiosClient.get(url, {
       params: {
-        tuKhoa
+        tuKhoa,
       },
       headers: {
         Authorization: "Bearer " + token,
@@ -67,12 +67,16 @@ const userDashboardApi = {
   getUserById: (taiKhoan) => {
     const url = `/QuanLyNguoiDung/LayThongTinNguoiDung?taiKhoan=${taiKhoan}`;
     // const url = "/QuanLyNguoiDung/ThongTinTaiKhoan";
-    return axiosClient.post(url, {}, {
-      headers: {
-        Authorization: 'Bearer ' + token,
-        "Content-Type": "application/json"
+    return axiosClient.post(
+      url,
+      {},
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+          "Content-Type": "application/json",
+        },
       }
-    })
+    );
   },
 
   addUser: (taiKhoan) => {
@@ -87,16 +91,20 @@ const userDashboardApi = {
 
   editUser: (taiKhoan) => {
     const url = "/QuanLyNguoiDung/CapNhatThongTinNguoiDung";
-    return axiosClient.put(url, {nd: taiKhoan} , {
-      headers: {
-        "Content-Type": "application/json-patch+json",
-        Authorization: "Bearer " + token,
-      },
-    });
+    return axiosClient.put(
+      url,
+      { nd: taiKhoan },
+      {
+        headers: {
+          "Content-Type": "application/json-patch+json",
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
   },
 
   deleteUser: ({ taiKhoan }) => {
-    console.log(taiKhoan)
+    console.log(taiKhoan);
     const url = "/QuanLyNguoiDung/XoaNguoiDung";
     return axiosClient.delete(url, {
       params: {
