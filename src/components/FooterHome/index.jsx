@@ -72,79 +72,79 @@ const FooterHome = () => {
             </a>
           </div>
 
-          <div className="footer_groups grid grid-cols-2 text-sm gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-4">
-            <div className="footer_group-item space-y-3">
+          <div className="grid grid-cols-2 text-sm footer_groups gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-4">
+            <div className="space-y-3 footer_group-item">
               <h3 className="tracking-wide text-gray-100 uppercase">
                 Cybersoft Movie
               </h3>
               <ul className="space-y-1">
                 <li>
-                  <a href>About us</a>
+                  <a href className="text-blue-400">About us</a>
                 </li>
                 <li>
-                  <a href>My profile</a>
+                  <a href className="text-blue-400">My profile</a>
                 </li>
                 <li>
-                  <a href>Pricing plans</a>
+                  <a href className="text-blue-400">Pricing plans</a>
                 </li>
                 <li>
-                  <a href>Contacts</a>
+                  <a href className="text-blue-400">Contacts</a>
                 </li>
               </ul>
             </div>
 
-            <div className="footer_group-item space-y-3">
+            <div className="space-y-3 footer_group-item">
               <h3 className="tracking-wide text-gray-100 uppercase">Browse</h3>
               <ul className="space-y-1">
                 <li>
-                  <a href>Live TV</a>
+                  <a href className="text-blue-400">Live TV</a>
                 </li>
                 <li>
-                  <a href>Live News</a>
+                  <a href className="text-blue-400">Live News</a>
                 </li>
                 <li>
-                  <a href>Live Sports</a>
+                  <a href className="text-blue-400">Live Sports</a>
                 </li>
                 <li>
-                  <a href>Streaming Library</a>
+                  <a href className="text-blue-400">Streaming Library</a>
                 </li>
               </ul>
             </div>
 
-            <div className="footer_group-item space-y-3">
+            <div className="space-y-3 footer_group-item">
               <h3 className="uppercase footer-nav-dis" style={{ opacity: 0 }}>
                 a
               </h3>
               <ul className="space-y-1 ">
                 <li>
-                  <a href>TV Shows</a>
+                  <a href className="text-blue-400">TV Shows</a>
                 </li>
                 <li>
-                  <a href>Movies</a>
+                  <a href className="text-blue-400">Movies</a>
                 </li>
                 <li>
-                  <a href>Kids</a>
+                  <a href className="text-blue-400">Kids</a>
                 </li>
                 <li>
-                  <a href>Collections</a>
+                  <a href className="text-blue-400">Collections</a>
                 </li>
               </ul>
             </div>
 
-            <div className="footer_group-item space-y-3">
+            <div className="space-y-3 footer_group-item">
               <h3 className="text-gray-100 uppercase">Help</h3>
               <ul className="space-y-1">
                 <li>
-                  <a href>Account & Billing</a>
+                  <a href className="text-blue-400">Account & Billing</a>
                 </li>
                 <li>
-                  <a href>Plans & Pricing</a>
+                  <a href className="text-blue-400">Plans & Pricing</a>
                 </li>
                 <li>
-                  <a href>Supported devices</a>
+                  <a href className="text-blue-400">Supported devices</a>
                 </li>
                 <li>
-                  <a href>Accessibility</a>
+                  <a href className="text-blue-400">Accessibility</a>
                 </li>
               </ul>
             </div>
@@ -153,7 +153,7 @@ const FooterHome = () => {
 
         <div
           style={{ color: "white" }}
-          className=" py-6 text-sm text-center text-gray-100"
+          className="py-6 text-sm text-center text-gray-100 "
         >
           {" "}
           © 1968 Company Co. All rights reserved.
