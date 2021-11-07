@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Scrollbar */
 body::-webkit-scrollbar {
   width: 16px;
@@ -27,6 +31,4 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
